@@ -1,0 +1,19 @@
+<div>
+  <label for="name">Name</label>
+  <input type="text" id="name" 
+  required 
+  [(ngModel)]="name" />
+</div>
+<div>
+  <label for="ssa">SSA</label>
+  <input type="text" id="ssa" 
+  required 
+  [(ngModel)]="ssa" />
+</div>
+<div>
+  <label for="type">Type</label>     
+  <input type="text" id="type" 
+  required 
+  [(ngModel)]="type" />
+</div>
+<button (click)=onClick()>Add item</button>
