@@ -1,0 +1,31 @@
+<div>
+  <form novalidate #myForm="ngForm">
+    <kendo-grid [data]="items" (remove)="removeItem($event)">
+      <kendo-grid-command-column title="" width="100">
+        <ng-template kendoGridCellTemplate>
+          <button kendoGridRemoveCommand>Remove</button>
+        </ng-template>
+      </kendo-grid-command-column>
+      <kendo-grid-column field="Id" title="ID">
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+          <input [(ngModel)]="dataItem.Id" name="Id" class="k-textbox" required/>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="Name" title="Name">
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+          <input [(ngModel)]="dataItem.Name" name="Name" class="k-textbox" required/>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="Ssa" title="Search Service Application">
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+          <input [(ngModel)]="dataItem.Ssa" name="Ssa" class="k-textbox" required/>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="Type" title="Type">
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+          <input [(ngModel)]="dataItem.Type" name="Type" class="k-textbox" required/>
+        </ng-template>
+      </kendo-grid-column>
+    </kendo-grid>
+  </form>
+</div>

@@ -1,0 +1,33 @@
+<div *ngIf="opened" class="overlay"></div>
+<button kendoButton (click)=open() *ngIf="!opened" >Add item</button>
+
+<kendo-window title="Add item" *ngIf="opened" (close)="close()" [draggable]="isDraggable" [resizable]="isResizable" [width]="450" [minWidth]="250">
+    <form class="k-form">
+        <fieldset>
+            <legend>Item</legend>
+            <label class="k-form-field">
+                <span>
+                    Name
+                </span>
+                <input type="text" class="k-textbox" placeholder="Name of the item" [(ngModel)]="item.Name" name="name" required>
+            </label>
+            <label class="k-form-field">
+                <span>
+                    Search Service Application
+                </span>
+                <input type="text" class="k-textbox" placeholder="Name of the Search Service Application" [(ngModel)]="item.Ssa" name="ssa" required>
+            </label>
+            <label class="k-form-field">
+                <span>
+                    Type
+                </span>
+                <input type="text" class="k-textbox" placeholder="Type of the item" [(ngModel)]="item.Type" name="type" required>
+            </label>
+        </fieldset>
+        <div class="text-right">
+            <button type="button" class="k-button k-primary" (click)="submit()">Add</button>
+            <button type="button" class="k-button" (click)="close()">Cancel</button>
+            <button type="button" class="k-button" (click)="clear()">Clear</button>
+        </div>
+    </form>
+</kendo-window>
