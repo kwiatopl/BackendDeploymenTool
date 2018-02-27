@@ -37,13 +37,13 @@ export class AddItemComponent implements OnInit {
     this.item = new Item();
   }
 
-  submit() {
+  onSubmit() {
     this.item.Id = this.itemCount;
     this.addItem(this.item);
     this.itemCount++;
     
     this.opened = false;
-    this.clear();
+    this.clear();   
   }
 
   addItem(item: Item){

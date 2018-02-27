@@ -1,11 +1,4 @@
 <div>
-<<<<<<< HEAD
-    <ul>
-      <li *ngFor='let item of items'>Id: {{item.id}}, Name: {{item.name}}, SSA: {{item.ssa}}, Type: {{item.type}}</li>
-    </ul>
-  </div>
-  
-=======
   <form novalidate #myForm="ngForm">
     <kendo-grid [data]="items" (remove)="removeItem($event)">
       <kendo-grid-command-column title="" width="100">
@@ -36,4 +29,3 @@
     </kendo-grid>
   </form>
 </div>
->>>>>>> 367356f248bece0bc0b9c911face9a309fe050ed
