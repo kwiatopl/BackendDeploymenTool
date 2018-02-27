@@ -5,27 +5,23 @@ import { ItemListService } from '../service/item-list.service';
 @Component({
   selector: 'app-items-list',
   templateUrl: './items-list.component.html',
-  styleUrls: ['./items-list.component.css']
+  styleUrls: ['./items-list.component.scss']
 })
 export class ItemsListComponent implements OnInit {
-  newItem: Item;
   items: Item[];
 
   constructor(private store: ItemListService) {
-    this.store = store;
-   }
+  }
 
   ngOnInit() {
     this.getItems();
   }
 
-  getItems(): Item[] {
-    this.items = this.store.getItems(); 
-    return this.items;
+  getItems(): void {
+    this.items = this.store.getItems();
   }
 
-  addItem(item){
-     this.store.addItem(item);
+  removeItem({dataItem}){
+    this.store.removeItem(dataItem);
   }
-
 }

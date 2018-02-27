@@ -7,34 +7,46 @@ import { Item } from '../models/item';
 @Component({
   selector: 'app-add-item',
   templateUrl: './add-item.component.html',
-  styleUrls: ['./add-item.component.css']
+  styleUrls: ['./add-item.component.scss']
 })
 export class AddItemComponent implements OnInit {
-  name: string;
-  ssa: string;
-  type: string;
-  newItem: Item;
-  idNumber: number = 1;
+  private itemCount: number = 1;
+  item: Item;
+
+  opened: boolean = false;
+  isDraggable: boolean = false;
+  isResizable: boolean = false;
 
   constructor(private store: ItemListService) { }
 
   ngOnInit() {
+    this.clear();
   }
 
-  onClick() {
-    this.newItem = new Item;
-    this.newItem.id = this.idNumber;
-    this.idNumber++;
-    this.newItem.name = this.name;
-    this.newItem.ssa = this.ssa;
-    this.newItem.type = this.type;
-
-    this.addItem(this.newItem);
+  open() {
+    this.opened = true;
   }
 
-  addItem(item){
+  close() {
+    this.opened = false;
+    this.clear();
+  }
+
+  clear() {
+    this.item = null;
+    this.item = new Item();
+  }
+
+  submit() {
+    this.item.Id = this.itemCount;
+    this.addItem(this.item);
+    this.itemCount++;
+    
+    this.opened = false;
+    this.clear();
+  }
+
+  addItem(item: Item){
     this.store.addItem(item);
  }
-
-
 }
