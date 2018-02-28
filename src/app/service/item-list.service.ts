@@ -4,6 +4,7 @@ import { MessageService } from './message.service';
 
 @Injectable()
 export class ItemListService {
+  itemId: number = 1;
   itemsList: Item[] = [];
 
   constructor(private messageService: MessageService) { }
@@ -14,8 +15,10 @@ export class ItemListService {
   }
 
   addItem(item: Item): void {
+    item.Id = this.itemId;
     this.itemsList.push(item);
     this.messageService.add('Item added');
+    this.itemId++;
   }
 
   removeItem(item: Item): void {
@@ -24,5 +27,15 @@ export class ItemListService {
       this.itemsList.splice(index, 1);
     }
     this.messageService.add('Item removed');
+  }
+
+  resetItem(item: Item){
+    const originalItem = this.itemsList.find(i => i.Id == item.Id);
+    Object.assign(originalItem, item);
+  }
+
+  editItem(item: Item){
+    let i = this.itemsList.indexOf(item, 0)
+    this.itemsList[i] = item;
   }
 }

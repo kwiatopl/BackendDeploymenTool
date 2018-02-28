@@ -1,30 +1,33 @@
 <div>
   <form novalidate #myForm="ngForm">
-    <kendo-grid [data]="items" (remove)="removeItem($event)">
+    <kendo-grid [data]="items" (dataStateChange)="onStateChange($event)" (save)="saveHandler($event)" (cancel)="cancelHandler($event)" (remove)="removeItem($event)" (edit)="editHandler($event)">
+    <ng-template kendoGridToolbarTemplate>
+        <app-add-item></app-add-item>
+    </ng-template>
       <kendo-grid-command-column title="" width="100">
         <ng-template kendoGridCellTemplate>
-          <button kendoGridRemoveCommand>Remove</button>
+          <button kendoGridRemoveCommand [icon]="'delete'"></button>
+          <button kendoGridEditCommand [icon]="'edit'"></button>
+          <button kendoGridSaveCommand [icon]="'save'" [disabled]="myForm.invalid"></button>
+          <button kendoGridCancelCommand [icon]="'cancel'"></button>
         </ng-template>
       </kendo-grid-command-column>
-      <kendo-grid-column field="Id" title="ID">
+      <kendo-grid-column field="Name"  title="Name" width="200">
         <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-          <input [(ngModel)]="dataItem.Id" name="Id" class="k-textbox" required/>
+          <input [(ngModel)]="dataItem.Name" editor="" name="Name" class="k-textbox" required/>
         </ng-template>
       </kendo-grid-column>
-      <kendo-grid-column field="Name" title="Name">
-        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-          <input [(ngModel)]="dataItem.Name" name="Name" class="k-textbox" required/>
-        </ng-template>
-      </kendo-grid-column>
-      <kendo-grid-column field="Ssa" title="Search Service Application">
+      <kendo-grid-column field="Ssa" title="Search Service Application" width="200">
         <ng-template kendoGridEditTemplate let-dataItem="dataItem">
           <input [(ngModel)]="dataItem.Ssa" name="Ssa" class="k-textbox" required/>
         </ng-template>
       </kendo-grid-column>
-      <kendo-grid-column field="Type" title="Type">
+      <kendo-grid-column field="Type" title="Type" width="100">
         <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-          <input [(ngModel)]="dataItem.Type" name="Type" class="k-textbox" required/>
+          <input [(ngModel)]="dataItem.Type" name="Type" class="k-textbox" required readonly/>
         </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column>
       </kendo-grid-column>
     </kendo-grid>
   </form>
