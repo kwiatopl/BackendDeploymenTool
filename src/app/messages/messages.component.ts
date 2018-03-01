@@ -7,7 +7,7 @@ import { MessageService } from '../service/message.service';
   styleUrls: ['./messages.component.scss']
 })
 export class MessagesComponent implements OnInit {
-  public offset = { left: 10, top: 10 };
+  public offset = { left: 5, top: 5 };
 
   constructor(public messageService: MessageService) { }
 

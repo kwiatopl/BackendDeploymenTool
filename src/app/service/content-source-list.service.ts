@@ -1,27 +1,26 @@
 import { Injectable } from '@angular/core';
-import { Item } from '../models/item';
+import { ContentSource } from '../models/contentSource';
 import { MessageService } from './message.service';
 
 @Injectable()
-export class ItemListService {
+export class ContentSourceListService {
   itemId: number = 1;
-  itemsList: Item[] = [];
+  itemsList: ContentSource[] = [];
 
   constructor(private messageService: MessageService) { }
 
-  getItems(): Item[] {
-    this.messageService.add('Items fetched');
+  getItems(): ContentSource[] {
     return this.itemsList;
   }
 
-  addItem(item: Item): void {
+  addItem(item: ContentSource): void {
     item.Id = this.itemId;
     this.itemsList.push(item);
     this.messageService.add('Item added');
     this.itemId++;
   }
 
-  removeItem(item: Item): void {
+  removeItem(item: ContentSource): void {
     let index = this.itemsList.indexOf(item, 0);
     if (index > -1) {
       this.itemsList.splice(index, 1);
@@ -29,13 +28,14 @@ export class ItemListService {
     this.messageService.add('Item removed');
   }
 
-  resetItem(item: Item){
+  resetItem(item: ContentSource){
     const originalItem = this.itemsList.find(i => i.Id == item.Id);
     Object.assign(originalItem, item);
   }
 
-  editItem(item: Item){
+  editItem(item: ContentSource){
     let i = this.itemsList.indexOf(item, 0)
     this.itemsList[i] = item;
+    this.messageService.add('Item edited');
   }
 }

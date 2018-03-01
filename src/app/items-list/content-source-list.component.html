@@ -1,4 +1,4 @@
-<div>
+<div class='list'>
   <form novalidate #myForm="ngForm">
     <kendo-grid [data]="items" (dataStateChange)="onStateChange($event)" (save)="saveHandler($event)" (cancel)="cancelHandler($event)" (remove)="removeItem($event)" (edit)="editHandler($event)">
     <ng-template kendoGridToolbarTemplate>
@@ -6,10 +6,10 @@
     </ng-template>
       <kendo-grid-command-column title="" width="100">
         <ng-template kendoGridCellTemplate>
+        <button kendoGridEditCommand [icon]="'edit'"></button>
           <button kendoGridRemoveCommand [icon]="'delete'"></button>
-          <button kendoGridEditCommand [icon]="'edit'"></button>
-          <button kendoGridSaveCommand [icon]="'save'" [disabled]="myForm.invalid"></button>
           <button kendoGridCancelCommand [icon]="'cancel'"></button>
+          <button kendoGridSaveCommand [icon]="'save'" [disabled]="myForm.invalid"></button>
         </ng-template>
       </kendo-grid-command-column>
       <kendo-grid-column field="Name"  title="Name" width="200">

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
-import { ItemListService } from '../service/item-list.service';
-import { Item } from '../models/item';
+import { ContentSourceListService } from '../service/content-source-list.service';
+import { ContentSource } from '../models/contentSource';
 import { ContentSourceFormComponent } from '../content-source-form/content-source-form.component';
 
 @Component({
@@ -16,7 +16,7 @@ export class AddItemComponent implements OnInit {
   @ViewChild(ContentSourceFormComponent)
   private formComponent: ContentSourceFormComponent;
 
-  constructor(private store: ItemListService) { }
+  constructor(private store: ContentSourceListService) { }
 
   ngOnInit() {
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, Input, EventEmitter} from '@angular/core';
-import { ItemListService } from '../service/item-list.service';
-import { Item } from '../models/item';
+import { ContentSourceListService } from '../service/content-source-list.service';
+import { ContentSource } from '../models/contentSource';
 import { NgForm, NgModel } from '@angular/forms';
 import { AddItemComponent } from '../add-item/add-item.component';
 
@@ -10,14 +10,14 @@ import { AddItemComponent } from '../add-item/add-item.component';
   styleUrls: ['./content-source-form.component.scss']
 })
 export class ContentSourceFormComponent implements OnInit {
-  item: Item = new Item();
+  item: ContentSource = new ContentSource();
   types: Array<string> = ["Sharepoint", "Web", "Business"];
 
   validationMessage: string;
 
   @Output() windowState = new EventEmitter<boolean>();
 
-  constructor(private store: ItemListService) {
+  constructor(private store: ContentSourceListService) {
   }
 
   ngOnInit() {
@@ -25,7 +25,7 @@ export class ContentSourceFormComponent implements OnInit {
 
   clear() {
     this.item = null;
-    this.item = new Item();
+    this.item = new ContentSource();
     this.validationMessage = null;
   }
 
@@ -44,7 +44,7 @@ export class ContentSourceFormComponent implements OnInit {
     } 
   }
 
-  addItem(item: Item){
+  addItem(item: ContentSource){
     this.store.addItem(item);
   }
 }

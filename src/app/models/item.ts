@@ -1,6 +1,5 @@
-export class Item {
+export interface IItem {
     Id: number;
     Name: string;
     Ssa: string;
-    Type: string;
 }

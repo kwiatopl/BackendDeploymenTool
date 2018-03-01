@@ -1,20 +1,20 @@
 import { Component, OnInit} from '@angular/core';
-import { Item } from '../models/item';
-import { ItemListService } from '../service/item-list.service';
+import { ContentSource } from '../models/contentSource';
+import { ContentSourceListService } from '../service/content-source-list.service';
 import { AddItemComponent } from '../add-item/add-item.component';
 
 @Component({
-  selector: 'app-items-list',
-  templateUrl: './items-list.component.html',
-  styleUrls: ['./items-list.component.scss']
+  selector: 'app-content-source-list',
+  templateUrl: './content-source-list.component.html',
+  styleUrls: ['./content-source-list.component.scss']
 })
-export class ItemsListComponent implements OnInit {
-  items: Item[];
-  itemToEdit: Item;
+export class ContentSourceListComponent implements OnInit {
+  items: ContentSource[];
+  itemToEdit: ContentSource;
   private editedRowIndex: number;
-  private editedItem: Item;
+  private editedItem: ContentSource;
 
-  constructor(private store: ItemListService) {
+  constructor(private store: ContentSourceListService) {
   }
 
   ngOnInit() {
