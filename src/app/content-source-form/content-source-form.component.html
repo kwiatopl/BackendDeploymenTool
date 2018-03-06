@@ -20,6 +20,12 @@
               </span>
               <kendo-dropdownlist name="type" [data]="types" [(ngModel)]="item.Type" required></kendo-dropdownlist>
           </label>
+          <label class="k-form-field">
+              <span>
+                  Start addresses
+              </span>
+              <input class="k-textbox" placeholder='Start addresses separated by comma ","' [(ngModel)]="item.Address" name="address" required>
+          </label>
       </fieldset>
       <div class="errorPlaceholder">
           {{validationMessage}}
