@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ContentSource } from '../models/contentSource';
 import { MessageService } from './message.service';
+import { ListService } from '../service/list.service';
 
 @Injectable()
-export class ContentSourceListService {
+export class ContentSourceListService implements ListService {
   itemId: number = 1;
   itemsList: ContentSource[] = [];
 
@@ -31,6 +32,7 @@ export class ContentSourceListService {
   resetItem(item: ContentSource){
     const originalItem = this.itemsList.find(i => i.Id == item.Id);
     Object.assign(originalItem, item);
+    this.messageService.add('Item reseted');
   }
 
   editItem(item: ContentSource){
