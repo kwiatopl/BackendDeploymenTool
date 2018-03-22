@@ -26,6 +26,10 @@
               </span>
               <input class="k-textbox" placeholder='Start addresses separated by comma ","' [(ngModel)]="item.Address" name="address" required>
           </label>
+          <div class="k-form-field">
+            <input type="checkbox" id="continuous" [(ngModel)]="item.Continuous" class="k-checkbox">
+            <label class="k-checkbox-label" for="continuous">Continuous crawl</label>
+          </div>
       </fieldset>
       <div class="errorPlaceholder">
           {{validationMessage}}

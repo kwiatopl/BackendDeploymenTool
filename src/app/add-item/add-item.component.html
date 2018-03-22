@@ -1,11 +1,11 @@
 <div *ngIf="opened" class="overlay"></div>
 
-<div class='button'>
+<div>
     <button class='k-button' (click)="open()">Add item</button>
 </div>
 
 <div class='window'>
     <kendo-window title="Add item" *ngIf="opened" (close)="close()" [draggable]="isDraggable" [resizable]="isResizable" [width]="450" [minWidth]="250">
-        <app-content-source-form (windowState)="windowState($event)"></app-content-source-form>
+        <app-content-source-form *ngIf="itemType == 0" (windowState)="windowState($event)"></app-content-source-form>
     </kendo-window>
 </div>

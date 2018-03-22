@@ -8,15 +8,15 @@ import { PopupModule } from '@progress/kendo-angular-popup';
 import { WindowModule } from '@progress/kendo-angular-dialog';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { InputsModule } from '@progress/kendo-angular-inputs';
 
 import { AppComponent } from './app.component';
-import { ContentSourceListComponent } from './items-list/content-source-list.component';
+import { ContentSourceListComponent } from './content-source-list/content-source-list.component';
 import { AddItemComponent } from './add-item/add-item.component';
 import { ContentSourceListService } from './service/content-source-list.service';
 import { MessagesComponent } from './messages/messages.component';
 import { MessageService } from './service/message.service';
 import { ContentSourceFormComponent } from './content-source-form/content-source-form.component';
-import { PageHeaderComponent } from './page-header/page-header.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +24,7 @@ import { PageHeaderComponent } from './page-header/page-header.component';
     ContentSourceListComponent,
     AddItemComponent,
     MessagesComponent,
-    ContentSourceFormComponent,
-    PageHeaderComponent,
+    ContentSourceFormComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +35,8 @@ import { PageHeaderComponent } from './page-header/page-header.component';
     PopupModule,
     WindowModule,
     DropDownsModule,
-    NgbModule
+    NgbModule,
+    InputsModule
   ],
   providers: [ContentSourceListService, MessageService],
   bootstrap: [AppComponent]
