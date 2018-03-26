@@ -49,12 +49,12 @@
       </kendo-grid-column>
       <kendo-grid-column field="SiteEnumeration" title="Max site enumeration depth" width="200">
           <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-              <input [(ngModel)]="dataItem.SiteEnumeration" name="SiteEnumeration" [disabled]="disableWeb" class="k-textbox" type="number"/>
+              <kendo-numerictextbox [min]="0" [max]="100" [format]="'n0'" [(ngModel)]="dataItem.SiteEnumeration" name="SiteEnumeration" [disabled]="disableWeb"></kendo-numerictextbox>
             </ng-template>
       </kendo-grid-column>
       <kendo-grid-column field="PageEnumeration" title="Max page enumeration depth" width="210">
           <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-              <input [(ngModel)]="dataItem.PageEnumeration" name="PageEnumeration" [disabled]="disableWeb" class="k-textbox" type="number"/>
+              <kendo-numerictextbox [min]="0" [max]="100" [format]="'n0'" [(ngModel)]="dataItem.PageEnumeration" name="PageEnumeration" [disabled]="disableWeb"></kendo-numerictextbox>
           </ng-template>
       </kendo-grid-column>
       <kendo-grid-column field="Proxy" title="Proxy group" width="120">

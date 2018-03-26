@@ -17,6 +17,8 @@ import { ContentSourceListService } from './service/content-source-list.service'
 import { MessagesComponent } from './messages/messages.component';
 import { MessageService } from './service/message.service';
 import { ContentSourceFormComponent } from './content-source-form/content-source-form.component';
+import { CrawlRuleFormComponent } from './crawl-rule-form/crawl-rule-form.component';
+import { CrawlRuleListComponent } from './crawl-rule-list/crawl-rule-list.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { ContentSourceFormComponent } from './content-source-form/content-source
     ContentSourceListComponent,
     AddItemComponent,
     MessagesComponent,
-    ContentSourceFormComponent
+    ContentSourceFormComponent,
+    CrawlRuleFormComponent,
+    CrawlRuleListComponent
   ],
   imports: [
     BrowserModule,
