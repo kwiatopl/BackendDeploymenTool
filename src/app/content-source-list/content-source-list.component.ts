@@ -15,6 +15,9 @@ export class ContentSourceListComponent implements OnInit {
   private editedRowIndex: number;
   private editedItem: ContentSource;
   itemType: ItemType = ItemType.ContentSource;
+  disableWeb: boolean;
+  disableSharepoint: boolean;
+  disableBusiness: boolean;
 
   constructor(private store: ContentSourceListService) {
   }
@@ -36,6 +39,22 @@ export class ContentSourceListComponent implements OnInit {
 
     this.editedRowIndex = rowIndex;
     this.editedItem = Object.assign({}, dataItem);
+    
+    if(this.editedItem.Type.toString() == "Sharepoint") {
+      this.disableBusiness = true;
+      this.disableWeb = true;
+      this.disableSharepoint = false;
+    }
+    if(this.editedItem.Type.toString() == "Web") {
+      this.disableSharepoint = true;
+      this.disableWeb = false;
+      this.disableBusiness = true;
+    }
+    if(this.editedItem.Type.toString() == "Business") {
+      this.disableSharepoint = true;
+      this.disableWeb = true;
+      this.disableBusiness = false;
+    } 
 
     sender.editRow(rowIndex);
   }
@@ -54,7 +73,7 @@ export class ContentSourceListComponent implements OnInit {
     grid.closeRow(rowIndex);
       
     if(this.editedItem){
-      this.store.resetItem(this.editedItem);
+    this.store.resetItem(this.editedItem);
     }
 
     this.editedRowIndex = undefined;

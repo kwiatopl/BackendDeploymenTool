@@ -27,8 +27,54 @@
               <input class="k-textbox" placeholder='Start addresses separated by comma ","' [(ngModel)]="item.Address" name="address" required>
           </label>
           <div class="k-form-field">
-            <input type="checkbox" id="continuous" [(ngModel)]="item.Continuous" class="k-checkbox">
-            <label class="k-checkbox-label" for="continuous">Continuous crawl</label>
+              <input type="checkbox" id="continuous" [(ngModel)]="item.Continuous" name="continuous" class="k-checkbox">
+              <label class="k-checkbox-label" for="continuous">Continuous crawl</label>
+          </div>
+          <label class="k-form-field">
+              <span>Crawl priority</span>
+              <kendo-dropdownlist name="priority" [data]="priorities" [(ngModel)]="item.Priority" required></kendo-dropdownlist>
+          </label>
+          <div *ngIf="item.Type == 'Sharepoint'">
+            <label class="k-form-field">
+              <span>Sharepoint crawl behavior</span>
+              <kendo-dropdownlist name="behavior" [data]="behaviors" [(ngModel)]="item.Behavior" required></kendo-dropdownlist>
+            </label>
+          </div>
+          <div *ngIf="item.Type == 'Web'">
+            <div class="k-form-field">
+              <input type="radio" name="depth" (change)="onDepthClick($event)" id="depth1" class="k-radio" value="Server">
+              <label class="k-radio-label" for="depth1">Only crawl within the server of each start address</label>
+              <input type="radio" name="depth" (change)="onDepthClick($event)" id="depth2" class="k-radio" value="Page">
+              <label class="k-radio-label" for="depth2">Only crawl the first page of each start address</label>
+              <input type="radio" name="depth" (change)="onDepthClick($event)" id="depth3" class="k-radio" value="Custom">
+              <label class="k-radio-label" for="depth3">Custom</label>
+            </div>
+            <label class="k-form-field">
+              <span>
+                  Max site enumeration depth
+              </span>
+              <kendo-numerictextbox [min]="0" [max]="100" [format]="'n0'" [disabled]="!customDepth" [(ngModel)]="item.SiteEnumeration" name="siteEnumeration"></kendo-numerictextbox>
+            </label>
+            <label class="k-form-field">
+                <span>
+                    Max page enumeration depth
+                </span>
+                <kendo-numerictextbox [min]="0" [max]="100" [format]="'n0'" [disabled]="!customDepth" [(ngModel)]="item.PageEnumeration" name="pageEnumeration"></kendo-numerictextbox>
+              </label>
+          </div>
+          <div *ngIf="item.Type == 'Business'">
+            <label class="k-form-field">
+                <span>
+                    BDC Application proxy group
+                </span>
+                <kendo-dropdownlist name="proxy" [data]="proxies" [(ngModel)]="item.ProxyGroup" name="proxyGroup"></kendo-dropdownlist>
+            </label>
+            <label class="k-form-field" *ngIf="item.ProxyGroup == 'Custom'">
+                <span>
+                    Custom proxy group
+                </span>
+                <input class="k-textbox" [(ngModel)]="item.Proxy" name="proxy" placeholder="Custom BDC Application proxy group" required>
+            </label>
           </div>
       </fieldset>
       <div class="errorPlaceholder">

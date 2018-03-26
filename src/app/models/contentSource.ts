@@ -11,10 +11,11 @@ export class ContentSource implements IItem {
     Type: Type;
     Address: string;
     Continuous: boolean;
-    CrawlPriority: Priority;
+    Priority: Priority;
     Behavior: Behavior;
     SiteEnumeration: number;
     PageEnumeration: number;
     ProxyGroup: Proxy;
+    Proxy: string;
     LOBSystem: [string, string];
 }

@@ -34,38 +34,38 @@
       </kendo-grid-column>
       <kendo-grid-column field="Continuous" title="Continuous Crawl" width="150">
           <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-              <input [(ngModel)]="dataItem.Continuous" name="Continuous" type="checkbox"s/>
+              <input [(ngModel)]="dataItem.Continuous" name="Continuous" type="checkbox"/>
             </ng-template>
       </kendo-grid-column>
       <kendo-grid-column field="Priority" title="Crawl priority" width="150">
           <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-              <input [(ngModel)]="dataItem.CrawlPriority" name="CrawlPriority" class="k-textbox" type="number" required/>
-            </ng-template>
+              <input [(ngModel)]="dataItem.Priority" name="Priority" class="k-textbox" required readonly/>
+          </ng-template>
       </kendo-grid-column>
       <kendo-grid-column field="Behavior" title="Crawl behavior" width="150">
           <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-              <input [(ngModel)]="dataItem.Behavior" name="Behavior" class="k-textbox"/>
-            </ng-template>
+              <input [(ngModel)]="dataItem.Behavior" name="Behavior" [disabled]="disableSharepoint" class="k-textbox" readonly/>
+          </ng-template>
       </kendo-grid-column>
       <kendo-grid-column field="SiteEnumeration" title="Max site enumeration depth" width="200">
           <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-              <input [(ngModel)]="dataItem.SiteEnumeration" name="SiteEnumeration" class="k-textbox" type="number"/>
+              <input [(ngModel)]="dataItem.SiteEnumeration" name="SiteEnumeration" [disabled]="disableWeb" class="k-textbox" type="number"/>
             </ng-template>
       </kendo-grid-column>
       <kendo-grid-column field="PageEnumeration" title="Max page enumeration depth" width="210">
           <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-              <input [(ngModel)]="dataItem.PageEnumeration" name="PageEnumeration" class="k-textbox" type="number"/>
-            </ng-template>
+              <input [(ngModel)]="dataItem.PageEnumeration" name="PageEnumeration" [disabled]="disableWeb" class="k-textbox" type="number"/>
+          </ng-template>
       </kendo-grid-column>
-      <kendo-grid-column field="ProxyGroup" title="Proxy group" width="120">
+      <kendo-grid-column field="Proxy" title="Proxy group" width="120">
           <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-              <input [(ngModel)]="dataItem.ProxyGroup" name="ProxyGroup" class="k-textbox"/>
-            </ng-template>
+              <input [(ngModel)]="dataItem.Proxy" name="Proxy" class="k-textbox" [disabled]="disableBusiness" type="text" required/>
+          </ng-template>
       </kendo-grid-column>
       <kendo-grid-column field="LOBSystem" title="LOB System Set" width="150">
           <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-              <input [(ngModel)]="dataItem.LOBSystem" name="LOBSystem" class="k-textbox"/>
-            </ng-template>
+              <input [(ngModel)]="dataItem.LOBSystem" name="LOBSystem" [disabled]="disableBusiness" class="k-textbox"/>
+          </ng-template>
       </kendo-grid-column>
     </kendo-grid>
   </form>

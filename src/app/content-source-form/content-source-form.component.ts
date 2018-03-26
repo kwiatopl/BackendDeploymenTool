@@ -19,7 +19,10 @@ export class ContentSourceFormComponent implements OnInit {
   behaviors: Array<string> = [Behavior[0], Behavior[1]];
   proxies: Array<string> = [Proxy[0], Proxy[1]];
   priorities: Array<string> = [Priority[0], Priority[1]];
+  pageDepth: number;
+  siteDepth: number;
 
+  customProxy: boolean;
   customDepth: boolean;
 
   validationMessage: string;
@@ -44,8 +47,32 @@ export class ContentSourceFormComponent implements OnInit {
 
   onSubmit(form: any): void{
     if(form.valid) {
+      if(this.item.Type.toString() !== "Sharepoint") { 
+        //!Sharepoint
+        this.item.Behavior = undefined;
+      }
+      if(this.item.Type.toString() !== "Web") { 
+        //!Web
+        this.item.PageEnumeration = undefined;
+        this.item.SiteEnumeration = undefined;
+      }
+      if(this.item.Type.toString() !== "Business") { 
+        //!Business
+        this.item.ProxyGroup = undefined;
+        this.item.Proxy = undefined;
+        this.item.LOBSystem = undefined;
+      }
+      if(this.item.Type.toString() == "Business") {
+        if(this.item.ProxyGroup.toString() == "Default") {
+          this.item.Proxy = "Default";
+        } 
+      }
+      if(this.item.Continuous == undefined) {
+        this.item.Continuous = false;
+      }
+
       this.addItem(this.item);  
-      
+        
       this.windowState.emit(false);
       this.clear();
     } else {
@@ -55,5 +82,23 @@ export class ContentSourceFormComponent implements OnInit {
 
   addItem(item: ContentSource){
     this.store.addItem(item);
+  }
+
+  onDepthClick(ev) {
+    if(ev.target.value == "Server") {
+      this.customDepth = false;
+      this.item.SiteEnumeration = 0;
+      this.item.PageEnumeration = undefined;
+    }
+    else if (ev.target.value == "Page") {
+      this.customDepth = false;
+      this.item.SiteEnumeration = 0;
+      this.item.PageEnumeration = 0;
+    }
+    else if (ev.target.value == "Custom") {
+      this.item.SiteEnumeration = undefined;
+      this.item.PageEnumeration = undefined;
+      this.customDepth = true;
+    }
   }
 }
