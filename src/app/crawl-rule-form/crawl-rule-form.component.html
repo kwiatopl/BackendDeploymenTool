@@ -1,3 +1,27 @@
-<p>
-  crawl-rule-form works!
-</p>
+<div>
+  <form #form="ngForm" class="k-form" (ngSubmit)="onSubmit(form)" novalidate>
+    <fieldset>
+      <legend>Crawl Rule</legend>
+      <label class="k-form-field">
+        <span>
+            Path
+        </span>
+        <input type="text" class="k-textbox" placeholder="Name of the item" [(ngModel)]="item.Name" name="name" required>
+    </label>
+    <label class="k-form-field">
+        <span>
+            Search Service Application
+        </span>
+        <input type="text" class="k-textbox" placeholder="Name of the Search Service Application" [(ngModel)]="item.Ssa" name="ssa" required>
+    </label>
+    </fieldset>
+    <div class="errorPlaceholder">
+        {{validationMessage}}
+    </div>
+    <div class="text-right">
+        <button type="submit" class="k-button k-primary">Submit</button>
+        <button type="button" class="k-button" (click)="cancel()">Cancel</button>
+        <button type="button" class="k-button" (click)="clear()">Clear</button>
+    </div>
+  </form>
+</div>

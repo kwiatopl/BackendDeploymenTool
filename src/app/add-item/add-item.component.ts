@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, Input} from '@angular/core';
 import { ContentSourceListService } from '../service/content-source-list.service';
 import { ContentSource } from '../models/contentSource';
 import { ContentSourceFormComponent } from '../content-source-form/content-source-form.component';
+import { CrawlRuleFormComponent } from '../crawl-rule-form/crawl-rule-form.component';
+import { CrawlRuleListService } from '../service/crawl-rule-list.service';
 import { ItemType } from '../models/itemTypeEnum';
 
 @Component({
@@ -17,9 +19,11 @@ export class AddItemComponent implements OnInit {
   @Input() itemType: ItemType;
 
   @ViewChild(ContentSourceFormComponent)
-  private formComponent: ContentSourceFormComponent;
+  private csComponent: ContentSourceFormComponent;
+  @ViewChild(CrawlRuleFormComponent)
+  private crComponent: CrawlRuleFormComponent;
 
-  constructor(private store: ContentSourceListService) { }
+  constructor(private csStore: ContentSourceListService, private crStore: CrawlRuleListService) { }
 
   ngOnInit() {
   }
@@ -34,6 +38,7 @@ export class AddItemComponent implements OnInit {
 
   close() {
     this.opened = false;
-    this.formComponent.clear();
+    this.crComponent.clear();
+    this.csComponent.clear();
   }
 }

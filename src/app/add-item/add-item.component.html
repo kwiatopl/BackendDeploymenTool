@@ -5,7 +5,8 @@
 </div>
 
 <div class='window'>
-    <kendo-window title="Add item" *ngIf="opened" (close)="close()" [draggable]="isDraggable" [resizable]="isResizable" [width]="450" [minWidth]="250">
+    <kendo-window title="Add item" *ngIf="opened" (close)="close()" [draggable]="isDraggable" [resizable]="isResizable" [width]="440" [minWidth]="250">
         <app-content-source-form *ngIf="itemType == 0" (windowState)="windowState($event)"></app-content-source-form>
+        <app-crawl-rule-form *ngIf="itemType == 1" (windowState)="windowState($event)"></app-crawl-rule-form>
     </kendo-window>
 </div>

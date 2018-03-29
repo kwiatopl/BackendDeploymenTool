@@ -19,6 +19,7 @@ import { MessageService } from './service/message.service';
 import { ContentSourceFormComponent } from './content-source-form/content-source-form.component';
 import { CrawlRuleFormComponent } from './crawl-rule-form/crawl-rule-form.component';
 import { CrawlRuleListComponent } from './crawl-rule-list/crawl-rule-list.component';
+import { CrawlRuleListService } from './service/crawl-rule-list.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { CrawlRuleListComponent } from './crawl-rule-list/crawl-rule-list.compon
     NgbModule,
     InputsModule
   ],
-  providers: [ContentSourceListService, MessageService],
+  providers: [ContentSourceListService, MessageService, CrawlRuleListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

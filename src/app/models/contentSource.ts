@@ -17,5 +17,5 @@ export class ContentSource implements IItem {
     PageEnumeration: number;
     ProxyGroup: Proxy;
     Proxy: string;
-    LOBSystem: [string, string];
+    LOBSystem: string;
 }
