@@ -18,7 +18,7 @@ export class ContentSourceFormComponent implements OnInit {
   types: Array<string> = [Type[0], Type[1], Type[2]];
   behaviors: Array<string> = [Behavior[0], Behavior[1]];
   proxies: Array<string> = [Proxy[0], Proxy[1]];
-  priorities: Array<string> = [Priority[0], Priority[1]];
+  priorities: Array<string> = [Priority[1], Priority[2]];
   pageDepth: number;
   siteDepth: number;
 
@@ -65,11 +65,14 @@ export class ContentSourceFormComponent implements OnInit {
       if(this.item.Type.toString() == "Business") {
         if(this.item.ProxyGroup.toString() == "Default") {
           this.item.Proxy = "Default";
+          this.item.LOBSystem.trim();
         } 
       }
       if(this.item.Continuous == undefined) {
         this.item.Continuous = false;
       }
+
+      this.item.Address.trim();
 
       this.addItem(this.item);  
         

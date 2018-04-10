@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -20,6 +21,7 @@ import { ContentSourceFormComponent } from './content-source-form/content-source
 import { CrawlRuleFormComponent } from './crawl-rule-form/crawl-rule-form.component';
 import { CrawlRuleListComponent } from './crawl-rule-list/crawl-rule-list.component';
 import { CrawlRuleListService } from './service/crawl-rule-list.service';
+import { GenerateXmlComponent } from './generate-xml/generate-xml.component';
 
 @NgModule({
   declarations: [
@@ -29,10 +31,12 @@ import { CrawlRuleListService } from './service/crawl-rule-list.service';
     MessagesComponent,
     ContentSourceFormComponent,
     CrawlRuleFormComponent,
-    CrawlRuleListComponent
+    CrawlRuleListComponent,
+    GenerateXmlComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     BrowserAnimationsModule, 
     GridModule,

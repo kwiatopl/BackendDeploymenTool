@@ -24,7 +24,7 @@
               <span>
                   Start addresses
               </span>
-              <textarea class="k-textarea" placeholder='Start addresses separated by [Enter]' [(ngModel)]="item.Address" name="address" required></textarea>
+              <textarea class="k-textarea" placeholder='Start addresses separated by comma[,]' [(ngModel)]="item.Address" name="address" required></textarea>
           </label>
           <div class="k-form-field">
               <input type="checkbox" id="continuous" [(ngModel)]="item.Continuous" name="continuous" class="k-checkbox">
@@ -42,11 +42,11 @@
           </div>
           <div *ngIf="item.Type == 'Web'">
             <div class="k-form-field">
-              <input type="radio" name="depth" (change)="onDepthClick($event)" id="depth1" class="k-radio" value="Server">
+              <input type="radio" name="depth" (change)="onDepthClick($event)" id="depth1" class="k-radio" value="Server" required>
               <label class="k-radio-label" for="depth1">Only crawl within the server of each start address</label>
-              <input type="radio" name="depth" (change)="onDepthClick($event)" id="depth2" class="k-radio" value="Page">
+              <input type="radio" name="depth" (change)="onDepthClick($event)" id="depth2" class="k-radio" value="Page" required>
               <label class="k-radio-label" for="depth2">Only crawl the first page of each start address</label>
-              <input type="radio" name="depth" (change)="onDepthClick($event)" id="depth3" class="k-radio" value="Custom">
+              <input type="radio" name="depth" (change)="onDepthClick($event)" id="depth3" class="k-radio" value="Custom" required>
               <label class="k-radio-label" for="depth3">Custom</label>
             </div>
             <label class="k-form-field">
@@ -79,7 +79,7 @@
                 <span>
                      LOB System set<br/>
                 </span>
-                <textarea class="k-textarea" [(ngModel)]="item.LOBSystem" name="lobSystem" placeholder="LOB System set pairs separated by [Enter]"></textarea>
+                <textarea class="k-textarea" [(ngModel)]="item.LOBSystem" name="lobSystem" placeholder="LOB System set pairs separated by comma[,] and semicolon[;]"></textarea>
             </label>
           </div>
       </fieldset>

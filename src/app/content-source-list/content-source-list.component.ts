@@ -25,7 +25,9 @@ export class ContentSourceListComponent implements OnInit {
   ngOnInit() {
     this.getItems();
     let key = <HTMLElement>document.body.querySelector("#content-source-list");
-    key.addEventListener("keydown", (ev) => { if(ev.keyCode === 13) {ev.preventDefault(); return false;}});
+    if(key) {
+      key.addEventListener("keydown", (ev) => { if(ev.keyCode === 13) {ev.preventDefault(); return false;}});
+    }
   }
 
   getItems(): void {

@@ -1,4 +1,4 @@
 export enum Priority {
-    Normal,
-    High
+    Normal = 1,
+    High = 2
 }

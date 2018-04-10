@@ -8,12 +8,33 @@
         </span>
         <input type="text" class="k-textbox" placeholder="Name of the item" [(ngModel)]="item.Name" name="name" required>
     </label>
+    <div class="k-form-field">
+        <input type="checkbox" id="regexCh" class="k-checkbox" [(ngModel)]="item.Regex" name="regex">
+        <label class="k-checkbox-label" for="regexCh">Use regular expression syntax for matching this rule</label>
+    </div>
     <label class="k-form-field">
         <span>
             Search Service Application
         </span>
         <input type="text" class="k-textbox" placeholder="Name of the Search Service Application" [(ngModel)]="item.Ssa" name="ssa" required>
     </label>
+    <div class="k-form-field">
+        <span>
+            Crawl settings
+        </span>
+        <input type="radio" name="ruleType" id="exclude" value="Exclude" [(ngModel)]="item.Rule" class="k-radio" (change)="onChange($event)" required/>
+        <label class="k-radio-label" for="exclude">Exclude all items in this path</label>
+            <input type="checkbox" id="excludeComplexUrls" class="k-checkbox" [(ngModel)]="item.ExcludeComplexUrls" name="excludeComplexUrls" [disabled]="disableExclude">
+            <label class="k-checkbox-label" for="excludeComplexUrls">Exclude complex URLs (URLs that contain question marks - ?)</label>
+        <input type="radio" name="ruleType" id="include" value="Include" [(ngModel)]="item.Rule" class="k-radio" (change)="onChange($event)" required/>
+        <label class="k-radio-label" for="include">Include all items in this path</label>
+            <input type="checkbox" id="followLinks" class="k-checkbox" [(ngModel)]="item.FollowLinks" name="followLinks" [disabled]="disableInclude">
+            <label class="k-checkbox-label" for="followLinks">Follow links on the URL without crawling the URL itself</label>
+            <input type="checkbox" id="crawlComplexUrls" class="k-checkbox" [(ngModel)]="item.CrawlComplexUrls" name="crawlComplexUrls" [disabled]="disableInclude">
+            <label class="k-checkbox-label" for="crawlComplexUrls">Crawl complex URLs (URLs that contain a question mark - ?)</label>
+            <input type="checkbox" id="crawlAsHttp" class="k-checkbox" [(ngModel)]="item.CrawlAsHttp" name="crawlAsHttp" [disabled]="disableInclude">
+            <label class="k-checkbox-label" for="crawlAsHttp">Crawl SharePoint content as http pages</label>
+    </div>
     </fieldset>
     <div class="errorPlaceholder">
         {{validationMessage}}

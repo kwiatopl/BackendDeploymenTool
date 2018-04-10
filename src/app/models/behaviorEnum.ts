@@ -1,4 +1,4 @@
 export enum Behavior {
-    SiteCollection,
-    Everything
+    CrawlSites,
+    CrawlVirtualServers
 }

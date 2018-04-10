@@ -1,5 +1,5 @@
 <div class='list'>
-  <form novalidate #myForm="ngForm" id="contnet-source-list">
+  <form novalidate #myForm="ngForm" id="content-source-list">
     <kendo-grid [data]="items" (dataStateChange)="onStateChange($event)" (save)="saveHandler($event)" (cancel)="cancelHandler($event)" (remove)="removeItem($event)" (edit)="editHandler($event)">
       <ng-template kendoGridToolbarTemplate>
           <app-add-item [itemType]="itemType"></app-add-item>
