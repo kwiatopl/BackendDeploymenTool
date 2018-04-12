@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CrawlRule } from '../models/crawlRule';
 import { MessageService } from './message.service';
-import { ListService } from '../service/list.service';
+import { ListService } from './list.service';
 
 @Injectable()
 export class CrawlRuleListService implements ListService {

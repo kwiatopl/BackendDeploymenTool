@@ -1,14 +1,14 @@
-import { Type } from './typeEnum';
-import { Behavior } from './behaviorEnum';
-import { Priority } from './priorityEnum';
-import { Proxy } from './proxyEnum';
+import { ContentSourceType } from './enums/csTypeEnum';
+import { Behavior } from './enums/behaviorEnum';
+import { Priority } from './enums/priorityEnum';
+import { Proxy } from './enums/proxyEnum';
 import { IItem } from './item';
 
 export class ContentSource implements IItem {
     Id: number;
     Name: string;
     Ssa: string;
-    Type: Type;
+    Type: ContentSourceType;
     Address: string;
     Continuous: boolean;
     Priority: Priority;

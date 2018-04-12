@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CrawlRule } from '../models/crawlRule';
-import { ItemType } from '../models/itemTypeEnum';
-import { CrawlRuleListService } from '../service/crawl-rule-list.service'; 
+import { CrawlRule } from '../../../models/crawlRule';
+import { ItemType } from '../../../models/enums/itemTypeEnum';
+import { CrawlRuleListService } from '../../../services/crawl-rule-list.service'; 
 
 @Component({
   selector: 'app-crawl-rule-list',
@@ -13,7 +13,9 @@ export class CrawlRuleListComponent implements OnInit {
   itemToEdit: CrawlRule;
   private editedRowIndex: number;
   private editedItem: CrawlRule;
-  itemType: ItemType = ItemType.CrawlRule ;
+  itemType: ItemType = ItemType.CrawlRule;
+  disableInclude: boolean = false;
+  disableExclude: boolean = false;
 
   constructor(private store: CrawlRuleListService) {
   }
@@ -37,6 +39,9 @@ export class CrawlRuleListComponent implements OnInit {
 
     this.editedRowIndex = rowIndex;
     this.editedItem = Object.assign({}, dataItem);
+
+    if( this.editedItem.Rule.toString() == "Exclude") { this.disableInclude = true; this.disableExclude = false; }
+    if( this.editedItem.Rule.toString() == "Include") { this.disableExclude = true; this.disableInclude = false; }
 
     sender.editRow(rowIndex);
   }

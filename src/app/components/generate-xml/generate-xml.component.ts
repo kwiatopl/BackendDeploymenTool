@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { catchError, retry } from 'rxjs/operators';
 import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { ContentSourceListService } from '../service/content-source-list.service';
-import { CrawlRuleListService } from '../service/crawl-rule-list.service';
-import { ContentSource } from '../models/contentSource';
-import { CrawlRule } from '../models/crawlRule';
+import { ContentSourceListService } from '../../services/content-source-list.service';
+import { CrawlRuleListService } from '../../services/crawl-rule-list.service';
+import { ContentSource } from '../../models/contentSource';
+import { CrawlRule } from '../../models/crawlRule';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -26,7 +26,7 @@ export class GenerateXmlComponent implements OnInit {
     this.ItemsList.forEach( el => {
       el.forEach( innerEl => {
         Object.keys(innerEl).forEach( key => {
-          if(innerEl[key] && key !== 'Id')
+          if(innerEl[key] && key !== 'Id' && (typeof innerEl[key]  === 'string' || innerEl[key] instanceof String))
           {
             innerEl[key] = innerEl[key].replace(regex,'');
           }

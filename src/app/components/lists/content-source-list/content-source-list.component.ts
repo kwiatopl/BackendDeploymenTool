@@ -1,8 +1,8 @@
 import { Component, OnInit} from '@angular/core';
-import { ContentSource } from '../models/contentSource';
-import { ContentSourceListService } from '../service/content-source-list.service';
-import { AddItemComponent } from '../add-item/add-item.component';
-import { ItemType } from '../models/itemTypeEnum';
+import { ContentSource } from '../../../models/contentSource';
+import { ContentSourceListService } from '../../../services/content-source-list.service';
+import { AddItemComponent } from '../../add-item/add-item.component';
+import { ItemType } from '../../../models/enums/itemTypeEnum';
 
 @Component({
   selector: 'app-content-source-list',

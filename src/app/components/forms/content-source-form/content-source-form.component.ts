@@ -1,12 +1,12 @@
 import { Component, OnInit, Output, Input, EventEmitter} from '@angular/core';
-import { ContentSourceListService } from '../service/content-source-list.service';
-import { ContentSource } from '../models/contentSource';
+import { ContentSourceListService } from '../../../services/content-source-list.service';
+import { ContentSource } from '../../../models/contentSource';
 import { NgForm, NgModel } from '@angular/forms';
-import { AddItemComponent } from '../add-item/add-item.component';
-import { Type } from '../models/typeEnum';
-import { Behavior } from '../models/behaviorEnum';
-import { Proxy } from '../models/proxyEnum';
-import { Priority } from '../models/priorityEnum';
+import { AddItemComponent } from '../../add-item/add-item.component';
+import { ContentSourceType } from '../../../models/enums/csTypeEnum';
+import { Behavior } from '../../../models/enums/behaviorEnum';
+import { Proxy } from '../../../models/enums/proxyEnum';
+import { Priority } from '../../../models/enums/priorityEnum';
 
 @Component({
   selector: 'app-content-source-form',
@@ -15,7 +15,7 @@ import { Priority } from '../models/priorityEnum';
 })
 export class ContentSourceFormComponent implements OnInit {
   item: ContentSource = new ContentSource();
-  types: Array<string> = [Type[0], Type[1], Type[2]];
+  types: Array<string> = [ContentSourceType[0], ContentSourceType[1], ContentSourceType[2]];
   behaviors: Array<string> = [Behavior[0], Behavior[1]];
   proxies: Array<string> = [Proxy[0], Proxy[1]];
   priorities: Array<string> = [Priority[1], Priority[2]];
@@ -103,5 +103,11 @@ export class ContentSourceFormComponent implements OnInit {
       this.item.PageEnumeration = undefined;
       this.customDepth = true;
     }
+  }
+
+  resetDepth(ev) {
+    ev.preventDefault();
+    this.item.PageEnumeration = undefined;
+    this.item.SiteEnumeration = undefined;
   }
 }

@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild, Input} from '@angular/core';
-import { ContentSourceListService } from '../service/content-source-list.service';
-import { ContentSource } from '../models/contentSource';
-import { ContentSourceFormComponent } from '../content-source-form/content-source-form.component';
-import { CrawlRuleFormComponent } from '../crawl-rule-form/crawl-rule-form.component';
-import { CrawlRuleListService } from '../service/crawl-rule-list.service';
-import { ItemType } from '../models/itemTypeEnum';
+import { ContentSourceListService } from '../../services/content-source-list.service';
+import { ContentSource } from '../../models/contentSource';
+import { ContentSourceFormComponent } from '../forms/content-source-form/content-source-form.component';
+import { CrawlRuleFormComponent } from '../forms/crawl-rule-form/crawl-rule-form.component';
+import { CrawlRuleListService } from '../../services/crawl-rule-list.service';
+import { ItemType } from '../../models/enums/itemTypeEnum';
 
 @Component({
   selector: 'app-add-item',

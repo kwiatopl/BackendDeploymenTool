@@ -35,6 +35,20 @@
             <input type="checkbox" id="crawlAsHttp" class="k-checkbox" [(ngModel)]="item.CrawlAsHttp" name="crawlAsHttp" [disabled]="disableInclude">
             <label class="k-checkbox-label" for="crawlAsHttp">Crawl SharePoint content as http pages</label>
     </div>
+    <div class="k-form-field">
+        <span>
+            Access method
+        </span>
+        <input type="radio" name="AccessMethod" id="access" value="Default" [(ngModel)]="item.AccessMethod" class="k-radio" checked required>
+        <label class="k-radio-label" for="access">Default Access Method</label>
+    </div>
+    <label class="k-form-field">
+        <span>
+            Priority
+        </span>
+        <kendo-numerictextbox [min]=0 [max]=200 [format]="'n0'" [(ngModel)]="item.Priority" name="Priority"></kendo-numerictextbox>
+        <button kendoButton (click)="resetPriority($event)" [icon]="'close'" [look]="'bare'">Reset priority</button>
+    </label>
     </fieldset>
     <div class="errorPlaceholder">
         {{validationMessage}}

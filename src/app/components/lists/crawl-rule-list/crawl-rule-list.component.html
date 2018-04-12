@@ -34,22 +34,22 @@
         </kendo-grid-column>
         <kendo-grid-column field="ExcludeComplexUrls" title="Exclude complex URLs (URLs that contain question marks - ?)">
           <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-            <input [(ngModel)]="dataItem.ExcludeComplexUrls" name="ExcludeComplexUrls" type="checkbox"/>
+            <input [(ngModel)]="dataItem.ExcludeComplexUrls" name="ExcludeComplexUrls" type="checkbox" [disabled]="disableExclude"/>
           </ng-template>
         </kendo-grid-column>
         <kendo-grid-column field="CrawlComplexUrls" title="Crawl complex URLs (URLs that contain a question mark - ?)">
           <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-            <input [(ngModel)]="dataItem.CrawlComplexUrls" name="CrawlComplexUrls" type="checkbox"/>
+            <input [(ngModel)]="dataItem.CrawlComplexUrls" name="CrawlComplexUrls" type="checkbox" [disabled]="disableInclude"/>
           </ng-template>
         </kendo-grid-column>
         <kendo-grid-column field="FollowLinks" title=" Follow links on the URL without crawling the URL itself">
           <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-            <input [(ngModel)]="dataItem.FollowLinks" name="FollowLinks" type="checkbox"/>
+            <input [(ngModel)]="dataItem.FollowLinks" name="FollowLinks" type="checkbox" [disabled]="disableInclude"/>
           </ng-template>
         </kendo-grid-column>
         <kendo-grid-column field="CrawlAsHttp" title="Crawl SharePoint content as http pages">
           <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-            <input [(ngModel)]="dataItem.CrawlAsHttp" name="CrawlAsHttp" type="checkbox"/>
+            <input [(ngModel)]="dataItem.CrawlAsHttp" name="CrawlAsHttp" type="checkbox" [disabled]="disableInclude"/>
           </ng-template>
         </kendo-grid-column>
         <kendo-grid-column field="AccessMethod" title="Access method">
@@ -59,7 +59,7 @@
         </kendo-grid-column>
         <kendo-grid-column field="Priority" title="Priority">
           <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-            <kendo-numerictextbox [min]=0 [(ngModel)]="dataItem.Priority" name="Priority"></kendo-numerictextbox>
+            <kendo-numerictextbox [min]=0 [max]=200 [(ngModel)]="dataItem.Priority" name="Priority"></kendo-numerictextbox>
           </ng-template>
         </kendo-grid-column>
       </kendo-grid>

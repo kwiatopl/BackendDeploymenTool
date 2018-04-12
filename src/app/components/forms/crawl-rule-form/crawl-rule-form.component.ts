@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
-import { CrawlRule } from '../models/crawlRule';
-import { CrawlRuleListService } from '../service/crawl-rule-list.service';
-import { Rule } from '../models/ruleEnum';
+import { CrawlRule } from '../../../models/crawlRule';
+import { CrawlRuleListService } from '../../../services/crawl-rule-list.service';
+import { Rule } from '../../../models/enums/ruleEnum';
 
 @Component({
   selector: 'app-crawl-rule-form',
@@ -42,12 +42,14 @@ export class CrawlRuleFormComponent implements OnInit {
         this.item.CrawlComplexUrls = undefined;
         this.item.FollowLinks = undefined;
       }
-      if(this.item.Rule.toString() == "Include") {
+      if(this.item.Rule.toString() == "Include") { 
         this.item.ExcludeComplexUrls = undefined;
       }
-      if(this.item.Regex == undefined || this.item.Regex == null) {
-        this.item.Regex = false;
-      }
+      if(this.item.Regex == undefined || this.item.Regex == null) { this.item.Regex = false; }
+      if(this.item.CrawlAsHttp == undefined || this.item.CrawlAsHttp == null) { this.item.CrawlAsHttp = false; }
+      if(this.item.CrawlComplexUrls == undefined || this.item.CrawlComplexUrls == null) { this.item.CrawlComplexUrls = false; }
+      if(this.item.ExcludeComplexUrls == undefined || this.item.ExcludeComplexUrls == null) { this.item.ExcludeComplexUrls = false; }
+      if(this.item.FollowLinks == undefined || this.item.FollowLinks == null) { this.item.FollowLinks = false; }
 
       this.addItem(this.item);  
         
@@ -72,5 +74,10 @@ export class CrawlRuleFormComponent implements OnInit {
       this.disableExclude = true;
       this.disableInclude = false;
     }
+  }
+
+  resetPriority(ev) {
+    ev.preventDefault();
+    this.item.Priority = undefined;
   }
 }

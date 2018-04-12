@@ -1,4 +1,5 @@
 export enum ItemType {
     ContentSource,
-    CrawlRule
+    CrawlRule,
+    SearchSchema
 }

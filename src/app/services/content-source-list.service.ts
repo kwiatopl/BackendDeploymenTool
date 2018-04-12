@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ContentSource } from '../models/contentSource';
 import { MessageService } from './message.service';
-import { ListService } from '../service/list.service';
+import { ListService } from './list.service';
 
 @Injectable()
 export class ContentSourceListService implements ListService {

@@ -60,8 +60,9 @@
                     Max page enumeration depth
                 </span>
                 <kendo-numerictextbox [min]="0" [max]="100" [format]="'n0'" [disabled]="!customDepth" [(ngModel)]="item.PageEnumeration" name="pageEnumeration"></kendo-numerictextbox>
-              </label>
-          </div>
+                <button kendoButton (click)="resetDepth($event)" [icon]="'close'" [look]="'bare'">Reset depth</button>
+            </label>
+            </div>
           <div *ngIf="item.Type == 'Business'">
             <label class="k-form-field">
                 <span>

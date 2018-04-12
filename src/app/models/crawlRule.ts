@@ -1,5 +1,5 @@
 import { IItem } from './item';
-import { Rule } from './ruleEnum';
+import { Rule } from './enums/ruleEnum';
 
 export class CrawlRule implements IItem {
     Id: number;
