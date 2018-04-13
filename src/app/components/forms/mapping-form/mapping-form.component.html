@@ -1,0 +1,30 @@
+<div *ngIf="opened" class="overlay"></div>
+
+<div>
+    <button type='button' class='k-button' (click)="open()">Add</button>
+</div>
+
+<div class='mappingWindow'>
+    <kendo-window title="Mapping" *ngIf="opened" (close)="close()" [draggable]="isDraggable" [resizable]="isResizable" [width]="500" [minWidth]="250">
+    <legend>Crawled properties to map</legend>
+    <div class="k-form-field">
+      <span>Action</span>
+      <input type="radio" name="action" id="create" class="k-radio" value="Create" required/>
+      <label class="k-radio-label" for="create">Create</label>
+      <input type="radio" name="action" id="remove" class="k-radio" value="Remove" required/>
+      <label class="k-radio-label" for="remove">Remove</label>
+    </div>
+    <label class="k-form-field">
+      <span>Category</span>
+      <kendo-dropdownlist name="category" [data]="categories" required></kendo-dropdownlist>
+    </label>
+    <label class="k-form-field">
+      <span>Crawled properties</span>
+    </label>
+    <div>
+      <button type="button" class="k-button k-primary" (click)="add()">Add</button>
+      <button type="button" class="k-button" (click)="clear()">Clear</button>
+      <button type="button" class="k-button" (click)="close()">Cancel</button>
+    </div>
+    </kendo-window>
+</div>

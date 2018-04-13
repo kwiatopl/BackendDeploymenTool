@@ -1,0 +1,20 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+  
+  .mappingWindow {
+    position: fixed;
+    top: -5%;
+    left: 1em;
+    z-index: 4000;
+  }
+  
+  .k-textarea {
+    height: 3em;
+  }

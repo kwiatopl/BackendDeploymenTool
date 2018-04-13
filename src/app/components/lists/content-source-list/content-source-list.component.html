@@ -14,7 +14,7 @@
       </kendo-grid-command-column>
       <kendo-grid-column field="Name"  title="Name" width="200">
         <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-          <input [(ngModel)]="dataItem.Name" editor="" name="Name" class="k-textbox" required/>
+          <input [(ngModel)]="dataItem.Name" name="Name" class="k-textbox" required/>
         </ng-template>
       </kendo-grid-column>
       <kendo-grid-column field="Ssa" title="Search Service Application" width="200">
@@ -35,7 +35,7 @@
       <kendo-grid-column field="Continuous" title="Continuous Crawl" width="150">
           <ng-template kendoGridEditTemplate let-dataItem="dataItem">
               <input [(ngModel)]="dataItem.Continuous" name="Continuous" type="checkbox"/>
-            </ng-template>
+          </ng-template>
       </kendo-grid-column>
       <kendo-grid-column field="Priority" title="Crawl priority" width="150">
           <ng-template kendoGridEditTemplate let-dataItem="dataItem">

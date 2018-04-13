@@ -25,6 +25,7 @@ import { GenerateXmlComponent } from './components/generate-xml/generate-xml.com
 import { SearchSchemaFormComponent } from './components/forms/search-schema-form/search-schema-form.component';
 import { SearchSchemaListComponent } from './components/lists/search-schema-list/search-schema-list.component';
 import { SearchSchemaListService } from './services/search-schema-list.service';
+import { MappingFormComponent } from './components/forms/mapping-form/mapping-form.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { SearchSchemaListService } from './services/search-schema-list.service';
     CrawlRuleListComponent,
     GenerateXmlComponent,
     SearchSchemaFormComponent,
-    SearchSchemaListComponent
+    SearchSchemaListComponent,
+    MappingFormComponent
   ],
   imports: [
     BrowserModule,

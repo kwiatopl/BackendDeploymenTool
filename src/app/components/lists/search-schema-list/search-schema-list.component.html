@@ -1,3 +1,87 @@
-<p>
-  search-schema-list works!
-</p>
+<div class='list'>
+  <form novalidate #myForm="ngForm" id="search-schema-list">
+    <kendo-grid [data]="items" (dataStateChange)="onStateChange($event)" (save)="saveHandler($event)" (cancel)="cancelHandler($event)" (remove)="removeItem($event)" (edit)="editHandler($event)">
+      <ng-template kendoGridToolbarTemplate>
+          <app-add-item [itemType]="itemType"></app-add-item>
+      </ng-template>
+      <kendo-grid-command-column title="" width="100">
+        <ng-template kendoGridCellTemplate>
+        <button kendoGridEditCommand [icon]="'edit'"></button>
+          <button kendoGridRemoveCommand [icon]="'delete'"></button>
+          <button kendoGridCancelCommand [icon]="'cancel'"></button>
+          <button kendoGridSaveCommand [icon]="'save'" [disabled]="myForm.invalid"></button>
+        </ng-template>
+      </kendo-grid-command-column>
+      <kendo-grid-column field="Name"  title="Name" width="200">
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+          <input [(ngModel)]="dataItem.Name" name="Name" class="k-textbox" required/>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="Ssa" title="Search Service Application" width="200">
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+          <input [(ngModel)]="dataItem.Ssa" name="Ssa" class="k-textbox" required/>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="Description" title="Description" width="200">
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+          <input [(ngModel)]="dataItem.Description" name="Description" class="k-textbox"/>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="Type" title="Type" width="120">
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+          <input [(ngModel)]="dataItem.Type" name="Type" class="k-textbox" required readonly/>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="Searchable" title="Searchable" width="100">
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+          <input [(ngModel)]="dataItem.Searchable" name="Searchable" type="checkbox"/>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="Queryable" title="Queryable" width="100">
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+          <input [(ngModel)]="dataItem.Queryable" name="Queryable" type="checkbox"/>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="Retrievable" title="Retrievable" width="100">
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+          <input [(ngModel)]="dataItem.Retrievable" name="Retrievable" type="checkbox"/>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="MultiValue" title="Multiple Values" width="100">
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+          <input [(ngModel)]="dataItem.MultiValue" name="MultiValue" type="checkbox"/>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="Refinable" title="Refinable" width="100">
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+          <input [(ngModel)]="dataItem.Refinable" class="k-textbox" name="Refinable" required readonly/>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="Sortable" title="Sortable" width="100">
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+          <input [(ngModel)]="dataItem.Sortable" class="k-textbox" name="Sortable" required readonly/>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="Safe" title="Safe" width="100">
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+          <input [(ngModel)]="dataItem.Safe" type="checkbox" name="Safe"/>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="Token" title="Token normalization" width="100">
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+          <input [(ngModel)]="dataItem.Token" type="checkbox" name="Token"/>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="Complete" title="Complete matching" width="100">
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+          <input [(ngModel)]="dataItem.Complete" type="checkbox" name="Complete"/>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="Mapping" title="Crawled Properties" width="100">
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+          <input [(ngModel)]="dataItem.Mapping" class="k-textbox" name="Mapping" readonly/>
+        </ng-template>
+      </kendo-grid-column>
+    </kendo-grid>
+  </form>
+</div>

@@ -68,7 +68,7 @@ export class ContentSourceFormComponent implements OnInit {
           this.item.LOBSystem.trim();
         } 
       }
-      if(this.item.Continuous == undefined) {
+      if(this.item.Continuous == undefined || this.item.Continuous == null) {
         this.item.Continuous = false;
       }
 
