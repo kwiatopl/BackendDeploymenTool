@@ -20,5 +20,6 @@ export class ManagedProperty implements IItem {
     Safe: boolean;
     Token: boolean;
     Complete: boolean;
-    Mapping: Array<Mapping>;
+    Order: boolean;
+    Mapping: Array<Mapping> = new Array<Mapping>();
 }

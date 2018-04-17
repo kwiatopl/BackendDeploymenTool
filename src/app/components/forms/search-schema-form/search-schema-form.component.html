@@ -58,31 +58,34 @@
               <label class="k-checkbox-label" for="complete">Complete matching</label> <br/>
           </div>
           <legend>Mapping</legend>
-          <kendo-grid [data]="item.Mapping" (dataStateChange)="onStateChange($event)" (save)="saveHandler($event)" (cancel)="cancelHandler($event)" (remove)="removeItem($event)" (edit)="editHandler($event)">
+          <div class="k-form-field">
+            <input type="radio" name="order" id="no-order" class="k-radio" value="false" (change)="onOrderChange($event)" checked />
+            <label class="k-radio-label" for="no-order">Include content from all crawled properties</label>
+            <input type="radio" name="order" id="keep-order" class="k-radio" value="true" (change)="onOrderChange($event)"/>
+            <label class="k-radio-label" for="keep-order">Include content from the first crawled property that is not empty, based on the specified order</label>
+          </div>
+          <kendo-grid [data]="item.Mapping" (save)="saveHandler($event)" (cancel)="cancelHandler($event)" (remove)="removeItem($event)" (edit)="editHandler($event)">
             <ng-template kendoGridToolbarTemplate>
-                <app-mapping-form></app-mapping-form>
+                <app-mapping-form (addMapping)="mappingAdded($event)"></app-mapping-form>
             </ng-template>
-            <kendo-grid-command-column title="" width="100">
+            <kendo-grid-command-column title="" width="55">
             <ng-template kendoGridCellTemplate>
-                <button kendoGridEditCommand [icon]="'edit'"></button>
-                <button kendoGridRemoveCommand [icon]="'delete'"></button>
-                <button kendoGridCancelCommand [icon]="'cancel'"></button>
-                <button kendoGridSaveCommand [icon]="'save'" [disabled]="myForm.invalid"></button>
+                <button type="button" kendoGridRemoveCommand [icon]="'delete'"></button>
             </ng-template>
             </kendo-grid-command-column>
-            <kendo-grid-column field="Action" title="Action">
-                <ng-template kendoGridEditTemplate let-dataItem="Mapping">
-                    <input [(ngModel)]="Mapping.Action" name="Action" class="k-textbox" required readonly/>
+            <kendo-grid-column field="Action" title="Action" width="80">
+                <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+                    <input [(ngModel)]="dataItem.Action" name="Action" type="textbox" class="k-textbox" readonly required/>
                 </ng-template>
             </kendo-grid-column>
-            <kendo-grid-column field="Category" title="Category">
-                <ng-template kendoGridEditTemplate let-dataItem="Mapping">
-                    <input [(ngModel)]="Mapping.Category" name="Category" class="k-textbox" required readonly/>
+            <kendo-grid-column field="Category" title="Category" width="120">
+                <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+                    <input [(ngModel)]="dataItem.Category" name="Category" class="k-textbox" type="textbox" readonly required/>
                 </ng-template>
             </kendo-grid-column>
             <kendo-grid-column field="CrawledProperties" title="Crawled Properties">
-                <ng-template kendoGridEditTemplate let-dataItem="Mapping">
-                    <input [(ngModel)]="Mapping.CrawledProperties" name="CrawledProperties" class="k-textbox" required/>
+                <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+                    <input [(ngModel)]="dataItem.CrawledProperties" name="CrawledProperties" type="textbox" class="k-textbox" required readonly/>
                 </ng-template>
             </kendo-grid-column>
           </kendo-grid>

@@ -4,6 +4,8 @@ import { SearchSchemaListService } from '../../../services/search-schema-list.se
 import { ManagedPropertyType } from '../../../models/enums/mpTypeEnum';
 import { Sortable } from '../../../models/enums/sortableEnum';
 import { Refinable } from '../../../models/enums/refinableEnum';
+import { Mapping } from '../../../models/mapping';
+import { MappingFormComponent } from '../mapping-form/mapping-form.component';
 
 @Component({
   selector: 'app-search-schema-form',
@@ -22,7 +24,9 @@ export class SearchSchemaFormComponent implements OnInit {
     ManagedPropertyType[6]];
   refinables: Array<string> = [Refinable[0], Refinable[1], Refinable[2]]; 
   sortables: Array<string> = [Sortable[0], Sortable[1], Sortable[2]];
-
+  private editedRowIndex: number;
+  private editedItem: Mapping;
+  
   validationMessage: string;
 
   @Output() windowState = new EventEmitter<boolean>();
@@ -57,6 +61,7 @@ export class SearchSchemaFormComponent implements OnInit {
       if(this.item.Safe == undefined || this.item.Safe == null) { this.item.Safe = false }
       if(this.item.Token == undefined || this.item.Token == null) { this.item.Token = false }
       if(this.item.Complete == undefined || this.item.Complete == null) { this.item.Complete = false }
+      if(this.item.Order == undefined || this.item.Order == null) { this.item.Order = false }
 
       this.addItem(this.item);  
         
@@ -67,7 +72,22 @@ export class SearchSchemaFormComponent implements OnInit {
     } 
   }
 
+  mappingAdded(ev) {
+    this.item.Mapping.push(ev);
+  }
+
+  onOrderChange(ev) {
+    this.item.Order = ev.target.value;
+  }
+
   addItem(item: ManagedProperty){
     this.store.addItem(item);
+  }
+
+  removeItem({dataItem}){
+    let index = this.item.Mapping.indexOf(dataItem, 0);
+    if (index > -1) {
+      this.item.Mapping.splice(index, 1);
+    }
   }
 }

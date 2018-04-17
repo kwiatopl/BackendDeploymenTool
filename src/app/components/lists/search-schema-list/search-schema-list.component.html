@@ -77,6 +77,11 @@
           <input [(ngModel)]="dataItem.Complete" type="checkbox" name="Complete"/>
         </ng-template>
       </kendo-grid-column>
+      <kendo-grid-column field="Order" title="Keep order" width="100">
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+          <input [(ngModel)]="dataItem.Order" type="checkbox" name="Order"/>
+        </ng-template>
+      </kendo-grid-column>
       <kendo-grid-column field="Mapping" title="Crawled Properties" width="100">
         <ng-template kendoGridEditTemplate let-dataItem="dataItem">
           <input [(ngModel)]="dataItem.Mapping" class="k-textbox" name="Mapping" readonly/>

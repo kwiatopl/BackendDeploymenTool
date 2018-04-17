@@ -50,6 +50,7 @@ export class CrawlRuleFormComponent implements OnInit {
       if(this.item.CrawlComplexUrls == undefined || this.item.CrawlComplexUrls == null) { this.item.CrawlComplexUrls = false; }
       if(this.item.ExcludeComplexUrls == undefined || this.item.ExcludeComplexUrls == null) { this.item.ExcludeComplexUrls = false; }
       if(this.item.FollowLinks == undefined || this.item.FollowLinks == null) { this.item.FollowLinks = false; }
+      this.item.AccessMethod = "DefaultAccessMethod";
 
       this.addItem(this.item);  
         

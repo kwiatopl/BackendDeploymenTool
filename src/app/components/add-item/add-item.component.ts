@@ -16,6 +16,7 @@ export class AddItemComponent implements OnInit {
   opened: boolean = false;
   isDraggable: boolean = false;
   isResizable: boolean = false;
+  width: number = 400;
 
   @Input() itemType: ItemType;
 
@@ -37,6 +38,15 @@ export class AddItemComponent implements OnInit {
 
   open() {
     this.opened = true;
+    if (this.itemType == 0) {
+      this.width = 400;
+    }
+    else if (this.itemType == 1) {
+      this.width = 400;
+    }
+    else if (this.itemType == 2) {
+      this.width = 600;
+    }
   }
 
   close() {

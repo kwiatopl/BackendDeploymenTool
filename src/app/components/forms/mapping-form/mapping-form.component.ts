@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SearchSchemaListService } from '../../../services/search-schema-list.service';
 import { SearchSchemaFormComponent } from '../search-schema-form/search-schema-form.component';
 import { Category } from '../../../models/enums/categoryEnum';
@@ -14,10 +14,9 @@ export class MappingFormComponent implements OnInit {
   opened: boolean = false;
   isDraggable: boolean = false;
   isResizable: boolean = false;
-  properties: Array<string>
+  properties: Array<string>;
   crawledProperties: string;
-  category: Category;
-  action: string;
+  mapping: Mapping = new Mapping();
   categories: Array<string> = [
     Category[0],
     Category[1],
@@ -34,7 +33,9 @@ export class MappingFormComponent implements OnInit {
     Category[12],
   ]; 
 
-  @Input() mapping: Array<Mapping>;
+  validationMessage: string;
+
+  @Output() addMapping: EventEmitter<Mapping> = new EventEmitter<Mapping>();
 
   constructor() { }
 
@@ -42,8 +43,10 @@ export class MappingFormComponent implements OnInit {
   }
 
   clear() {
-    this.action = undefined;
-    this.category = undefined;
+    this.mapping = null;
+    this.mapping = new Mapping();
+    this.validationMessage = null;
+    this.crawledProperties = null;
   }
 
   open() {
@@ -52,11 +55,31 @@ export class MappingFormComponent implements OnInit {
 
   close() {
     this.opened = false;
-    this.category = undefined;
-    this.action = undefined;
+  }
+
+  parseProperties(data: string) {
+    let propertiesArray: Array<string> = [];
+    (data.split(",").forEach( el => { 
+      propertiesArray.push(el.trim());
+    })); 
+    return propertiesArray;
+  }
+
+  onSubmit(form: any): void {
+    if(form.valid) {
+      this.mapping.CrawledProperties = this.parseProperties(this.crawledProperties);
+
+      this.addMapping.emit(this.mapping);
+
+      this.close();
+      this.clear();
+    }
+    else {
+      this.validationMessage = "Enter required data";
+    } 
+
   }
 
   add() {
-    close();
   }
 }
