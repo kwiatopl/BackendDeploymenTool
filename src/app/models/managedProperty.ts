@@ -22,4 +22,5 @@ export class ManagedProperty implements IItem {
     Complete: boolean;
     Order: boolean;
     Mapping: Array<Mapping> = new Array<Mapping>();
+    ViewMapping: string = "";
 }

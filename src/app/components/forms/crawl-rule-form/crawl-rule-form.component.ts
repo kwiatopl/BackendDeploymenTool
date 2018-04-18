@@ -66,7 +66,6 @@ export class CrawlRuleFormComponent implements OnInit {
   }
 
   onChange(ev) {
-    console.log(ev.target.value);
     if(ev.target.value == "Exclude") {
       this.disableInclude = true;
       this.disableExclude = false;

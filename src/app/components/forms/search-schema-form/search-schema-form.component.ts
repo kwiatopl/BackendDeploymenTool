@@ -63,6 +63,10 @@ export class SearchSchemaFormComponent implements OnInit {
       if(this.item.Complete == undefined || this.item.Complete == null) { this.item.Complete = false }
       if(this.item.Order == undefined || this.item.Order == null) { this.item.Order = false }
 
+      if(this.item.Mapping) {
+        this.parseMapping(this.item.Mapping);
+      }
+
       this.addItem(this.item);  
         
       this.windowState.emit(false);
@@ -75,6 +79,15 @@ export class SearchSchemaFormComponent implements OnInit {
   mappingAdded(ev) {
     this.item.Mapping.push(ev);
   }
+
+  parseMapping(obj: Array<Mapping>) {
+    obj.forEach( el => {
+      el.CrawledProperties.forEach( cp => {
+        this.item.ViewMapping += el.Action.concat(":", el.Category.toString(), ":", cp, "\n");
+      })
+    })
+  }
+
 
   onOrderChange(ev) {
     this.item.Order = ev.target.value;

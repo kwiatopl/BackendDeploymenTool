@@ -26,6 +26,9 @@ import { SearchSchemaFormComponent } from './components/forms/search-schema-form
 import { SearchSchemaListComponent } from './components/lists/search-schema-list/search-schema-list.component';
 import { SearchSchemaListService } from './services/search-schema-list.service';
 import { MappingFormComponent } from './components/forms/mapping-form/mapping-form.component';
+import { ResultSourceListComponent } from './components/lists/result-source-list/result-source-list.component';
+import { ResultSourceFormComponent } from './components/forms/result-source-form/result-source-form.component';
+import { ResultSourceListService } from './services/result-source-list.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,9 @@ import { MappingFormComponent } from './components/forms/mapping-form/mapping-fo
     GenerateXmlComponent,
     SearchSchemaFormComponent,
     SearchSchemaListComponent,
-    MappingFormComponent
+    MappingFormComponent,
+    ResultSourceListComponent,
+    ResultSourceFormComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +59,7 @@ import { MappingFormComponent } from './components/forms/mapping-form/mapping-fo
     NgbModule,
     InputsModule
   ],
-  providers: [ContentSourceListService, MessageService, CrawlRuleListService, SearchSchemaListService],
+  providers: [ContentSourceListService, MessageService, CrawlRuleListService, SearchSchemaListService, ResultSourceListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

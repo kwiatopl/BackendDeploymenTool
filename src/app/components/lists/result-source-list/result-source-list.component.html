@@ -1,0 +1,47 @@
+<div class='list'>
+  <form novalidate #myForm="ngForm" id="result-source-list">
+    <kendo-grid [data]="items" (dataStateChange)="onStateChange($event)" (save)="saveHandler($event)" (cancel)="cancelHandler($event)" (remove)="removeItem($event)" (edit)="editHandler($event)">
+      <ng-template kendoGridToolbarTemplate>
+          <app-add-item [itemType]="itemType"></app-add-item>
+      </ng-template>
+      <kendo-grid-command-column title="" width="100" [style]="{'text-align': 'center'}">
+        <ng-template kendoGridCellTemplate>
+          <button kendoGridEditCommand [icon]="'edit'"></button>
+          <button kendoGridRemoveCommand [icon]="'delete'"></button>
+          <button kendoGridCancelCommand [icon]="'cancel'"></button>
+          <button kendoGridSaveCommand [icon]="'save'" [disabled]="myForm.invalid"></button>
+        </ng-template>
+      </kendo-grid-command-column>
+      <kendo-grid-column field="Name"  title="Name" width="250">
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+          <input [(ngModel)]="dataItem.Name" editor="" name="Name" class="k-textbox" required/>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="Ssa" title="Search Service Application" width="250">
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+          <input [(ngModel)]="dataItem.Ssa" name="Ssa" class="k-textbox" required/>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="Type" title="Type" width="200">
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+          <input [(ngModel)]="dataItem.Type" name="Type" class="k-textbox" required readonly/>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="RemoteUrl" title="Remote URL" width="300">
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+          <input [(ngModel)]="dataItem.RemoteUrl" name="RemoteUrl" type="textbox" class="k-textbox" [disabled]="!remote"/>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="Description" title="Description" width="300">
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+          <input [(ngModel)]="dataItem.Description" name="Description" type="textbox" class="k-textbox"/>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="QueryTransform" title="Query Transform" width="800">
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+          <input [(ngModel)]="dataItem.QueryTransform" name="QueryTransform" type="textbox" class="k-textbox"/>
+        </ng-template>
+      </kendo-grid-column>
+    </kendo-grid>
+  </form>
+</div>

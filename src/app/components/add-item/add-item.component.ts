@@ -5,6 +5,8 @@ import { CrawlRuleFormComponent } from '../forms/crawl-rule-form/crawl-rule-form
 import { CrawlRuleListService } from '../../services/crawl-rule-list.service';
 import { SearchSchemaFormComponent } from '../forms/search-schema-form/search-schema-form.component';
 import { SearchSchemaListService } from '../../services/search-schema-list.service';
+import { ResultSourceListService } from '../../services/result-source-list.service';
+import { ResultSourceFormComponent } from '../forms/result-source-form/result-source-form.component'
 import { ItemType } from '../../models/enums/itemTypeEnum';
 
 @Component({
@@ -24,10 +26,12 @@ export class AddItemComponent implements OnInit {
   private csComponent: ContentSourceFormComponent;
   @ViewChild(CrawlRuleFormComponent)
   private crComponent: CrawlRuleFormComponent;
-  @ViewChild(CrawlRuleFormComponent)
+  @ViewChild(SearchSchemaFormComponent)
   private ssComponent: SearchSchemaFormComponent;
+  @ViewChild(ResultSourceFormComponent)
+  private rsComponent: ResultSourceFormComponent;
 
-  constructor(private csStore: ContentSourceListService, private crStore: CrawlRuleListService, private ssStore: SearchSchemaListService) { }
+  constructor(private csStore: ContentSourceListService, private crStore: CrawlRuleListService, private ssStore: SearchSchemaListService, private rsStore: ResultSourceListService) { }
 
   ngOnInit() {
   }
@@ -38,21 +42,33 @@ export class AddItemComponent implements OnInit {
 
   open() {
     this.opened = true;
-    if (this.itemType == 0) {
-      this.width = 400;
+    if (this.itemType === ItemType.ContentSource) {
+      this.width = 450;
     }
-    else if (this.itemType == 1) {
-      this.width = 400;
+    else if (this.itemType === ItemType.CrawlRule) {
+      this.width = 500;
     }
-    else if (this.itemType == 2) {
+    else if (this.itemType === ItemType.SearchSchema) {
       this.width = 600;
+    }
+    else if(this.itemType === ItemType.ResultSource) {
+      this.width = 400;
     }
   }
 
   close() {
     this.opened = false;
-    this.crComponent.clear();
-    this.csComponent.clear();
-    this.ssComponent.clear();
+    if( this.itemType === ItemType.ContentSource ) {
+      this.crComponent.clear();
+    }
+    if( this.itemType === ItemType.CrawlRule ) {
+      this.csComponent.clear();
+    }
+    if( this.itemType === ItemType.SearchSchema ) {
+      this.ssComponent.clear();
+    }
+    if( this.itemType === ItemType.ResultSource ) {
+      this.rsComponent.clear();
+    }
   }
 }
