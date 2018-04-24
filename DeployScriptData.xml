@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BackendDeployScript Name="BackEndDeployScript">
+  <CrawlRulesList/>
+  <SearchSchema/>
+  <ResultSource/>
+</BackendDeployScript>

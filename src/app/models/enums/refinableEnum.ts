@@ -1,5 +1,5 @@
 export enum Refinable {
-    No,
-    Latent,
-    Active
+    Shallow = "No",
+    Latent = "Latent",
+    Deep = "Active"
 }

@@ -1,5 +1,5 @@
 export enum Sortable {
-    No,
-    Latent,
-    Active
+    Shallow = "No",
+    Latent = "Latent",
+    Deep = "Active"
 }

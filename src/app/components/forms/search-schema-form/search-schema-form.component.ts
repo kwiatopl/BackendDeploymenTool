@@ -22,8 +22,8 @@ export class SearchSchemaFormComponent implements OnInit {
     ManagedPropertyType[4],
     ManagedPropertyType[5],
     ManagedPropertyType[6]];
-  refinables: Array<string> = [Refinable[0], Refinable[1], Refinable[2]]; 
-  sortables: Array<string> = [Sortable[0], Sortable[1], Sortable[2]];
+  refinables: Array<string> = [Refinable.Shallow, Refinable.Latent, Refinable.Deep]; 
+  sortables: Array<string> = [Sortable.Shallow, Sortable.Latent, Sortable.Deep];
   private editedRowIndex: number;
   private editedItem: Mapping;
   

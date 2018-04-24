@@ -6,6 +6,8 @@ import { ContentSourceListService } from '../../services/content-source-list.ser
 import { CrawlRuleListService } from '../../services/crawl-rule-list.service';
 import { ContentSource } from '../../models/contentSource';
 import { CrawlRule } from '../../models/crawlRule';
+import { SearchSchemaListService } from '../../services/search-schema-list.service';
+import { ResultSourceListService } from '../../services/result-source-list.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -22,7 +24,8 @@ export class GenerateXmlComponent implements OnInit {
   ItemsList: any[] = new Array();
 
   verifyData() {
-    var regex = /(<([^>]+)>)|([<>!])/ig;
+    var regex = /<[a-zA-Z\/][^>]*>/ig;
+    //var regex = /(<([^>]+)>)|([<>!])/ig;
     this.ItemsList.forEach( el => {
       el.forEach( innerEl => {
         Object.keys(innerEl).forEach( key => {
@@ -39,15 +42,17 @@ export class GenerateXmlComponent implements OnInit {
     this.ItemsList.length = 0;
     this.ItemsList.push(this.csStore.getItems());
     this.ItemsList.push(this.crStore.getItems());
+    this.ItemsList.push(this.ssStore.getItems());
+    this.ItemsList.push(this.rsStore.getItems());
   }
 
   onClick() { 
     this.gatherData();
     this.verifyData();
-    return this.http.post("/api/post", JSON.stringify(this.ItemsList), httpOptions).subscribe(res => {console.log(res)});
+    return this.http.post("/api/post", JSON.stringify(this.ItemsList), httpOptions).subscribe(res => {});
   }
 
-  constructor(private http:HttpClient, private csStore:ContentSourceListService, private crStore:CrawlRuleListService) { }
+  constructor(private http:HttpClient, private csStore:ContentSourceListService, private crStore:CrawlRuleListService, private ssStore:SearchSchemaListService, private rsStore:ResultSourceListService) { }
 
   ngOnInit() {
   }

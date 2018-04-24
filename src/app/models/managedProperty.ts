@@ -10,6 +10,7 @@ export class ManagedProperty implements IItem {
     Name: string;
     Ssa: string;
     Description: string;
+    OnlyMapping: boolean;
     Type: ManagedPropertyType;
     Searchable: boolean;
     Queryable: boolean;
