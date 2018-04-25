@@ -64,7 +64,7 @@
             <input type="radio" name="order" id="keep-order" class="k-radio" value="true" (change)="onOrderChange($event)"/>
             <label class="k-radio-label" for="keep-order">Include content from the first crawled property that is not empty, based on the specified order</label>
           </div>
-          <kendo-grid [data]="item.Mapping" (save)="saveHandler($event)" (cancel)="cancelHandler($event)" (remove)="removeItem($event)" (edit)="editHandler($event)">
+          <kendo-grid [data]="item.Mapping" (remove)="removeItem($event)">
             <ng-template kendoGridToolbarTemplate>
                 <app-mapping-form (addMapping)="mappingAdded($event)"></app-mapping-form>
             </ng-template>

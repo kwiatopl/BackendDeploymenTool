@@ -34,13 +34,13 @@
               <span>Crawl priority</span>
               <kendo-dropdownlist name="priority" [data]="priorities" [(ngModel)]="item.Priority" required></kendo-dropdownlist>
           </label>
-          <div *ngIf="item.Type == 'Sharepoint'">
+          <div *ngIf="item.Type.toString() == 'Sharepoint'">
             <label class="k-form-field">
               <span>Sharepoint crawl behavior</span>
               <kendo-dropdownlist name="behavior" [data]="behaviors" [(ngModel)]="item.Behavior" required></kendo-dropdownlist>
             </label>
           </div>
-          <div *ngIf="item.Type == 'Web'">
+          <div *ngIf="item.Type.toString() == 'Web'">
             <div class="k-form-field">
               <input type="radio" name="depth" (change)="onDepthClick($event)" id="depth1" class="k-radio" value="Server" required>
               <label class="k-radio-label" for="depth1">Only crawl within the server of each start address</label>
@@ -63,7 +63,7 @@
                 <button kendoButton (click)="resetDepth($event)" [icon]="'close'" [look]="'bare'">Reset depth</button>
             </label>
             </div>
-          <div *ngIf="item.Type == 'Business'">
+          <div *ngIf="item.Type.toString() == 'Business'">
             <label class="k-form-field">
                 <span>
                     BDC Application proxy group

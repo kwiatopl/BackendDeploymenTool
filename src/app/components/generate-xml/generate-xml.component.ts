@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { catchError, retry } from 'rxjs/operators';
-import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpErrorResponse, HttpRequest } from '@angular/common/http';
 import { ContentSourceListService } from '../../services/content-source-list.service';
 import { CrawlRuleListService } from '../../services/crawl-rule-list.service';
 import { ContentSource } from '../../models/contentSource';
 import { CrawlRule } from '../../models/crawlRule';
 import { SearchSchemaListService } from '../../services/search-schema-list.service';
 import { ResultSourceListService } from '../../services/result-source-list.service';
+import { saveAs } from 'file-saver/FileSaver';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -49,7 +50,16 @@ export class GenerateXmlComponent implements OnInit {
   onClick() { 
     this.gatherData();
     this.verifyData();
-    return this.http.post("/api/post", JSON.stringify(this.ItemsList), httpOptions).subscribe(res => {});
+    return this.http.post("/api/generatexml", JSON.stringify(this.ItemsList), {responseType: "blob", headers: new HttpHeaders({ 'Content-Type':  'application/json' })})
+    .subscribe(
+      data => { 
+        console.log("Post request succesful", data);
+        let filename = "DeployScript.zip";
+        saveAs(data, filename);
+      }, 
+      error => { 
+        console.log("Error", error ) 
+      });
   }
 
   constructor(private http:HttpClient, private csStore:ContentSourceListService, private crStore:CrawlRuleListService, private ssStore:SearchSchemaListService, private rsStore:ResultSourceListService) { }
