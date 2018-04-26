@@ -177,9 +177,8 @@ XMLParser.prototype.ParseXML = function(data) {
             .ele("RemoteUrl", data[3][i].RemoteUrl).up()
             .ele("QueryTransform", data[3][i].QueryTransform).up()
         }
-
-    console.log(xml.end({ pretty: true }));
-    return xml.end({ pretty: true});
+        
+    return xml.end({ pretty: true });
 };
 
 module.exports = new XMLParser;

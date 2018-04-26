@@ -8,7 +8,6 @@ import { ButtonsModule} from '@progress/kendo-angular-buttons';
 import { PopupModule } from '@progress/kendo-angular-popup';
 import { WindowModule } from '@progress/kendo-angular-dialog';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -63,7 +62,6 @@ const appRoutes: Routes = [
     PopupModule,
     WindowModule,
     DropDownsModule,
-    NgbModule,
     InputsModule
   ],
   providers: [ContentSourceListService, MessageService, CrawlRuleListService, SearchSchemaListService, ResultSourceListService],
