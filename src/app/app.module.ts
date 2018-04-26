@@ -10,6 +10,7 @@ import { WindowModule } from '@progress/kendo-angular-dialog';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InputsModule } from '@progress/kendo-angular-inputs';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { ContentSourceListComponent } from './components/lists/content-source-list/content-source-list.component';
@@ -30,6 +31,11 @@ import { ResultSourceListComponent } from './components/lists/result-source-list
 import { ResultSourceFormComponent } from './components/forms/result-source-form/result-source-form.component';
 import { ResultSourceListService } from './services/result-source-list.service';
 
+const appRoutes: Routes = [
+  { path: '', redirectTo: 'index', pathMatch: 'full'},
+  { path: 'index', component: AppComponent }
+];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +53,7 @@ import { ResultSourceListService } from './services/result-source-list.service';
     ResultSourceFormComponent
   ],
   imports: [
+    RouterModule.forRoot(appRoutes),
     BrowserModule,
     HttpClientModule,
     FormsModule,

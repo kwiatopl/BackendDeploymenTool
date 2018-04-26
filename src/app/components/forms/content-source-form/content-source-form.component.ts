@@ -21,6 +21,7 @@ export class ContentSourceFormComponent implements OnInit {
   priorities: Array<string> = [Priority[1], Priority[2]];
   pageDepth: number;
   siteDepth: number;
+  type: string;
 
   customProxy: boolean;
   customDepth: boolean;
@@ -38,6 +39,7 @@ export class ContentSourceFormComponent implements OnInit {
   clear() {
     this.item = null;
     this.item = new ContentSource();
+    this.type = null;
     this.validationMessage = null;
   }
 
@@ -103,6 +105,10 @@ export class ContentSourceFormComponent implements OnInit {
       this.item.PageEnumeration = undefined;
       this.customDepth = true;
     }
+  }
+
+  onTypeChange(value) {
+    this.type = value; 
   }
 
   resetDepth(ev) {
