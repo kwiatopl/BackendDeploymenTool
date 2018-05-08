@@ -9,9 +9,8 @@
 }
 
 .window {
-  top: 1em;
-  left: 1em;
-  bottom: 1em;
+  top: -1em;
+  left: 0em;
   position: fixed;
   z-index: 3000;
 }

@@ -50,7 +50,8 @@ export class GenerateXmlComponent implements OnInit {
   onClick() { 
     this.gatherData();
     this.verifyData();
-    return this.http.post("/api/generatexml", JSON.stringify(this.ItemsList), {responseType: "blob", headers: new HttpHeaders({ 'Content-Type':  'application/json' })})
+
+    return this.http.post("/BDT/api/generatexml", JSON.stringify(this.ItemsList), {responseType: "blob", headers: new HttpHeaders({ 'Content-Type':  'application/json' })})
     .subscribe(
       data => { 
         console.log("Post request succesful", data);
@@ -58,8 +59,9 @@ export class GenerateXmlComponent implements OnInit {
         saveAs(data, filename);
       }, 
       error => { 
-        console.log("Error", error ) 
+        console.log("Error", error );
       });
+
   }
 
   constructor(private http:HttpClient, private csStore:ContentSourceListService, private crStore:CrawlRuleListService, private ssStore:SearchSchemaListService, private rsStore:ResultSourceListService) { }

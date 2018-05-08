@@ -3,11 +3,13 @@ function XMLParser(){};
 XMLParser.prototype.ParseXML = function(data) {
         var builder = require('xmlbuilder');
         var xml = builder.create('BackendDeployScript', { encoding: 'utf-8' }).attribute({ Name: 'BackEndDeployScript' });
-        
+        var runCrawl = 0;
+
         for (let i = 0; i < data[0].length; i++) {
             //Content Sources
             let priority;
             let lobSystemDict = [];
+            runCrawl = 1;
             
             if (data[0][i].Priority == "Normal") {
                 priority = 1;
@@ -63,6 +65,7 @@ XMLParser.prototype.ParseXML = function(data) {
         for (let i = 0; i < data[1].length; i++) {
             //Crawl Rules
             let accessMethod;
+            runCrawl = 1;
 
             if (data[1][i].AccessMethod) {
                 accessMethod = "DefaultRuleAccess";
@@ -90,22 +93,26 @@ XMLParser.prototype.ParseXML = function(data) {
             let sortable = 0;
             let refinableType;
             let sortableType;
+            runCrawl = 1;
 
-            if (data[2][i].Refinable.toString()) {
-                if(data[2][i].Refinable.toString() === "No") { refinable = 0; refinableType = "Shallow" }
-                else if(data[2][i].Refinable.toString() === "Latent") { refinable = 1; refinableType = "Latent" }
-                else if(data[2][i].Refinable.toString() === "Active") { refinable = 1; refinableType = "Deep" }
-            };
+            if(!data[2][i].OnlyMapping) {
+                if (data[2][i].Refinable.toString()) {
+                    if(data[2][i].Refinable.toString() === "No") { refinable = 0; refinableType = "Shallow" }
+                    else if(data[2][i].Refinable.toString() === "Latent") { refinable = 1; refinableType = "Latent" }
+                    else if(data[2][i].Refinable.toString() === "Active") { refinable = 1; refinableType = "Deep" }
+                };
 
-            if (data[2][i].Sortable.toString()) {
-                if(data[2][i].Sortable.toString() === "No") { sortable = 0; sortableType = "Shallow" }
-                else if(data[2][i].Sortable.toString() === "Latent") { sortable = 1; sortableType = "Latent" }
-                else if(data[2][i].Sortable.toString() === "Active") { sortable = 1; sortableType = "Deep" }
-            };
+                if (data[2][i].Sortable.toString()) {
+                    if(data[2][i].Sortable.toString() === "No") { sortable = 0; sortableType = "Shallow" }
+                    else if(data[2][i].Sortable.toString() === "Latent") { sortable = 1; sortableType = "Latent" }
+                    else if(data[2][i].Sortable.toString() === "Active") { sortable = 1; sortableType = "Deep" }
+                };
+            }
 
             var searchschema = SearchSchemaList.node('ManagedProperty')
                 .attribute({ Name: data[2][i].Name })
                 .ele('SearchApplication', data[2][i].Ssa).up()
+                .ele('OnlyCrawledProperties', data[2][i].OnlyMapping ? 1 : 0).up()
                 .ele('Description', data[2][i].Description).up()
                 .ele('Type', data[2][i].Type).up()
                 .ele('EnabledForScoping').up()
@@ -178,6 +185,8 @@ XMLParser.prototype.ParseXML = function(data) {
             .ele("QueryTransform", data[3][i].QueryTransform).up()
         }
         
+       xml.node("RunCrawl", runCrawl);
+
     return xml.end({ pretty: true });
 };
 

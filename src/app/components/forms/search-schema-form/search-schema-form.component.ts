@@ -24,6 +24,7 @@ export class SearchSchemaFormComponent implements OnInit {
     ManagedPropertyType[6]];
   refinables: Array<string> = [Refinable.Shallow, Refinable.Latent, Refinable.Deep]; 
   sortables: Array<string> = [Sortable.Shallow, Sortable.Latent, Sortable.Deep];
+  required: boolean = false;
   private editedRowIndex: number;
   private editedItem: Mapping;
   
@@ -62,6 +63,7 @@ export class SearchSchemaFormComponent implements OnInit {
       if(this.item.Token == undefined || this.item.Token == null) { this.item.Token = false }
       if(this.item.Complete == undefined || this.item.Complete == null) { this.item.Complete = false }
       if(this.item.Order == undefined || this.item.Order == null) { this.item.Order = false }
+      if(this.item.OnlyMapping == undefined || this.item.OnlyMapping == null) { this.item.OnlyMapping = false }
 
       if(this.item.Mapping) {
         this.parseMapping(this.item.Mapping);
@@ -88,6 +90,9 @@ export class SearchSchemaFormComponent implements OnInit {
     })
   }
 
+  onMappingChange(ev) {
+    this.required = ev;
+  }
 
   onOrderChange(ev) {
     this.item.Order = ev.target.value;

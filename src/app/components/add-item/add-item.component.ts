@@ -17,7 +17,7 @@ import { ItemType } from '../../models/enums/itemTypeEnum';
 export class AddItemComponent implements OnInit {
   opened: boolean = false;
   isDraggable: boolean = false;
-  isResizable: boolean = false;
+  isResizable: boolean = true;
   width: number = 400;
 
   @Input() itemType: ItemType;

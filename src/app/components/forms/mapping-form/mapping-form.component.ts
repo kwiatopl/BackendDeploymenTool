@@ -77,9 +77,5 @@ export class MappingFormComponent implements OnInit {
     else {
       this.validationMessage = "Enter required data";
     } 
-
-  }
-
-  add() {
   }
 }

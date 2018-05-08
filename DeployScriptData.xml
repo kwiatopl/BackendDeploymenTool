@@ -2,5 +2,13 @@
 <BackendDeployScript Name="BackEndDeployScript">
   <CrawlRulesList/>
   <SearchSchema/>
-  <ResultSource/>
+  <ResultSource>
+    <Name>tretre</Name>
+    <SearchApplication>treter</SearchApplication>
+    <Type>RemotePeople</Type>
+    <Description>rew</Description>
+    <RemoteUrl>qrew</RemoteUrl>
+    <QueryTransform>rew</QueryTransform>
+  </ResultSource>
+  <RunCrawl/>
 </BackendDeployScript>

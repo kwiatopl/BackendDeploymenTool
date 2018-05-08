@@ -15,28 +15,34 @@
               <input type="text" class="k-textbox" placeholder="Name of the Search Service Application" [(ngModel)]="item.Ssa" name="ssa" required>
           </label>
           <label class="k-form-field">
+            <span>
+                Only mapping
+            </span>
+            <kendo-switch [(ngModel)]="item.OnlyMapping" name="onlyMapping" (valueChange)="onMappingChange($event)" [onLabel]="'yes'" [offLabel]="'no'"></kendo-switch>
+        </label>
+          <label class="k-form-field">
               <span>
                   Type
               </span>
-              <kendo-dropdownlist name="type" [data]="types" [(ngModel)]="item.Type" required></kendo-dropdownlist>
+              <kendo-dropdownlist name="type" [data]="types" [(ngModel)]="item.Type" [required]="!required"></kendo-dropdownlist>
           </label>
           <label class="k-form-field">
               <span>
                   Description
               </span>
-              <textarea class="k-textarea" placeholder='Description of the item' [(ngModel)]="item.Description" name="description" ></textarea>
+              <textarea class="k-textarea" placeholder='Description of the item' [(ngModel)]="item.Description" name="description"></textarea>
           </label>
           <label class="k-form-field">
               <span>
                   Refinable
               </span>
-              <kendo-dropdownlist name="refinable" [data]="refinables" [(ngModel)]="item.Refinable" required></kendo-dropdownlist>
+              <kendo-dropdownlist name="refinable" [data]="refinables" [(ngModel)]="item.Refinable" [required]="!required"></kendo-dropdownlist>
           </label>
           <label class="k-form-field">
                 <span>
                     Sortable
                 </span>
-                <kendo-dropdownlist name="sortable" [data]="sortables" [(ngModel)]="item.Sortable" required></kendo-dropdownlist>
+                <kendo-dropdownlist name="sortable" [data]="sortables" [(ngModel)]="item.Sortable" [required]="!required"></kendo-dropdownlist>
             </label>
           <div class="k-form-field">
               <span>

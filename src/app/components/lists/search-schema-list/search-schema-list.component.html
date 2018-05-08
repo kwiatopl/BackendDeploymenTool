@@ -47,7 +47,7 @@
           <input [(ngModel)]="dataItem.Retrievable" name="Retrievable" type="checkbox"/>
         </ng-template>
       </kendo-grid-column>
-      <kendo-grid-column field="MultiValue" title="Multiple Values" width="140">
+      <kendo-grid-column field="MultiValue" title="Multiple Values" width="130">
         <ng-template kendoGridEditTemplate let-dataItem="dataItem">
           <input [(ngModel)]="dataItem.MultiValue" name="MultiValue" type="checkbox"/>
         </ng-template>
@@ -77,9 +77,14 @@
           <input [(ngModel)]="dataItem.Complete" type="checkbox" name="Complete"/>
         </ng-template>
       </kendo-grid-column>
-      <kendo-grid-column field="Order" title="Keep order" width="150">
+      <kendo-grid-column field="Order" title="Keep order" width="100">
         <ng-template kendoGridEditTemplate let-dataItem="dataItem">
           <input [(ngModel)]="dataItem.Order" type="checkbox" name="Order"/>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="OnlyMapping" title="Only Mapping" width="120">
+        <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+          <input [(ngModel)]="dataItem.OnlyMapping" class="k-textbox" name="ViewMapping" readonly/>
         </ng-template>
       </kendo-grid-column>
       <kendo-grid-column field="ViewMapping" title="Crawled Properties" width="300">
