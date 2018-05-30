@@ -39,7 +39,7 @@ XMLParser.prototype.ParseXML = function(data) {
                 .attribute({ Name: data[0][i].Name })
                 .ele('SearchApplication', data[0][i].Ssa).up()
                 .ele('Type', data[0][i].Type).up()
-                .ele('StartAdresses', data[0][i].Address).up()
+                .ele('StartAddresses', data[0][i].Address).up()
                 .ele('CrawlSettings')
                 .ele('ContinuousCrawl', data[0][i].Continuous ? 1 : 0).up()
                 .ele('SharepointCrawlBehavior', data[0][i].Behavior).up()
@@ -65,21 +65,35 @@ XMLParser.prototype.ParseXML = function(data) {
         for (let i = 0; i < data[1].length; i++) {
             //Crawl Rules
             let accessMethod;
+            let rule;
+            let complexUrls;
             runCrawl = 1;
 
             if (data[1][i].AccessMethod) {
                 accessMethod = "DefaultRuleAccess";
             };
+            
+            if(data[1][i].Rule == "Exclude") {
+                rule = "ExclusionRule";
+            }
+
+            if(data[1][i].CrawlComplexUrls || data[1][i].ExcludeComplexUrls) {
+                complexUrls = 1;
+            }
+
+            if(data[1][i].Rule == "Include") {
+                rule = "InclusionRule";
+            }
 
             crawlRuleList.ele('CrawlRule')
                 .ele("Path", data[1][i].Name).up()
                 .ele("SearchApplication", data[1][i].Ssa).up()
-                .ele("Type", data[1][i].Rule).up()
+                .ele("Type", rule).up()
                 .ele("AccountName").up()
                 .ele("AccountPassword").up()
                 .ele("AuthenticationType", accessMethod).up()
                 .ele("CrawlAsHTTP", data[1][i].CrawlAsHttp ? 1 : 0).up()
-                .ele("FollowComplexURLs", data[1][i].CrawlComplexUrls ? 1 : 0).up()
+                .ele("FollowComplexURLs", complexUrls).up()
                 .ele("IsAdvancedRegularExpression", data[1][i].Regex ? 1 : 0).up()
                 .ele("Priority", data[1][i].Priority).up()
                 .ele("SuppressIndexing", data[1][i].FollowLinks ? 1 : 0).up();
@@ -93,7 +107,32 @@ XMLParser.prototype.ParseXML = function(data) {
             let sortable = 0;
             let refinableType;
             let sortableType;
+            let type;
             runCrawl = 1;
+
+            switch(data[2][i].Type) {
+                case 'Text': 
+                    type = 1;
+                    break;
+                case 'Integer':
+                    type = 2;
+                    break;
+                case 'Decimal':
+                    type = 3;
+                    break;
+                case 'DateTime':
+                    type = 4;
+                    break;
+                case 'Boolean':
+                    type = 5;
+                    break;
+                case 'Binary':
+                    type = 6;
+                    break;
+                case 'DoubleFloat':
+                    type = 7;
+                    break;
+            }
 
             if(!data[2][i].OnlyMapping) {
                 if (data[2][i].Refinable.toString()) {
@@ -114,7 +153,7 @@ XMLParser.prototype.ParseXML = function(data) {
                 .ele('SearchApplication', data[2][i].Ssa).up()
                 .ele('OnlyCrawledProperties', data[2][i].OnlyMapping ? 1 : 0).up()
                 .ele('Description', data[2][i].Description).up()
-                .ele('Type', data[2][i].Type).up()
+                .ele('Type', type).up()
                 .ele('EnabledForScoping').up()
                 .ele('FullTextQueriable').up()
                 .ele('NameNormalized').up()
