@@ -1,0 +1,18 @@
+<div class="jumbotron text-center">
+    <h2>Backend Deployment Tool</h2>
+</div>
+<app-messages></app-messages>
+
+<div class="panel-title"><h4 class="title">Content Sources<span id="cs-collapsable" (click)="onClick('content-source','cs-collapsable')" class="visible collapsable-element k-icon k-i-arrow-chevron-up"></span></h4></div>
+<div id="content-source"><app-content-source-list></app-content-source-list></div> 
+<div class="panel-title"><h4 class="title">Crawl Rules<span id="cr-collapsable" (click)="onClick('crawl-rule','cr-collapsable')" class="visible collapsable-element k-icon k-i-arrow-chevron-up"></span></h4></div>
+<div id="crawl-rule"><app-crawl-rule-list></app-crawl-rule-list></div>
+<div class="panel-title"><h4 class="title">Search Schema<span id="ss-collapsable" (click)="onClick('search-schema','ss-collapsable')" class="visible collapsable-element k-icon k-i-arrow-chevron-up"></span></h4></div>
+<div id="search-schema"><app-search-schema-list></app-search-schema-list></div>   
+<div class="panel-title"><h4 class="title">Result Sources<span id="rs-collapsable" (click)="onClick('result-source','rs-collapsable')" class="visible collapsable-element k-icon k-i-arrow-chevron-up"></span></h4></div>
+<div id="result-source"><app-result-source-list></app-result-source-list></div>  
+
+<app-generate-xml></app-generate-xml>
+
+
+    

@@ -1,0 +1,110 @@
+<div>
+  <form #form="ngForm" class="k-form" (ngSubmit)="onSubmit(form)" novalidate>
+      <fieldset>
+          <legend>Managed Property</legend>
+          <label class="k-form-field">
+              <span>
+                  Name
+              </span>
+              <input type="text" class="k-textbox" placeholder="Name of the item" [(ngModel)]="item.Name" name="name" required>
+          </label>
+          <label class="k-form-field">
+              <span>
+                  Search Service Application
+              </span>
+              <input type="text" class="k-textbox" placeholder="Name of the Search Service Application" [(ngModel)]="item.Ssa" name="ssa" required>
+          </label>
+          <label class="k-form-field">
+            <span>
+                Only mapping
+            </span>
+            <kendo-switch [(ngModel)]="item.OnlyMapping" name="onlyMapping" (valueChange)="onMappingChange($event)" [onLabel]="'yes'" [offLabel]="'no'"></kendo-switch>
+        </label>
+          <label class="k-form-field">
+              <span>
+                  Type
+              </span>
+              <kendo-dropdownlist name="type" [data]="types" [(ngModel)]="item.Type" [required]="!required"></kendo-dropdownlist>
+          </label>
+          <label class="k-form-field">
+              <span>
+                  Description
+              </span>
+              <textarea class="k-textarea" placeholder='Description of the item' [(ngModel)]="item.Description" name="description"></textarea>
+          </label>
+          <label class="k-form-field">
+              <span>
+                  Refinable
+              </span>
+              <kendo-dropdownlist name="refinable" [data]="refinables" [(ngModel)]="item.Refinable" [required]="!required"></kendo-dropdownlist>
+          </label>
+          <label class="k-form-field">
+                <span>
+                    Sortable
+                </span>
+                <kendo-dropdownlist name="sortable" [data]="sortables" [(ngModel)]="item.Sortable" [required]="!required"></kendo-dropdownlist>
+            </label>
+          <div class="k-form-field">
+              <span>
+                  Settings
+              </span>
+              <input type="checkbox" id="searchable" [(ngModel)]="item.Searchable" name="searchable" class="k-checkbox">
+              <label class="k-checkbox-label" for="searchable">Searchable</label> <br/>
+              <input type="checkbox" id="queryable" [(ngModel)]="item.Queryable" name="queryable" class="k-checkbox">
+              <label class="k-checkbox-label" for="queryable">Queryable</label> <br/>
+              <input type="checkbox" id="retrievable" [(ngModel)]="item.Retrievable" name="retrievable" class="k-checkbox">
+              <label class="k-checkbox-label" for="retrievable">Retrievable</label> <br/>
+              <input type="checkbox" id="multiValue" [(ngModel)]="item.MultiValue" name="multiValue" class="k-checkbox">
+              <label class="k-checkbox-label" for="multiValue">Multiple Value</label> <br/>
+              <input type="checkbox" id="safe" [(ngModel)]="item.Safe" name="safe" class="k-checkbox">
+              <label class="k-checkbox-label" for="safe">Safe</label> <br/>
+              <input type="checkbox" id="token" [(ngModel)]="item.Token" name="token" class="k-checkbox">
+              <label class="k-checkbox-label" for="token">Token normalization</label> <br/>
+              <input type="checkbox" id="complete" [(ngModel)]="item.Complete" name="complete" class="k-checkbox">
+              <label class="k-checkbox-label" for="complete">Complete matching</label> <br/>
+          </div>
+          <legend>Mapping</legend>
+          <div class="k-form-field">
+            <input type="radio" name="order" id="no-order" class="k-radio" value="false" (change)="onOrderChange($event)" checked />
+            <label class="k-radio-label" for="no-order">Include content from all crawled properties</label>
+            <input type="radio" name="order" id="keep-order" class="k-radio" value="true" (change)="onOrderChange($event)"/>
+            <label class="k-radio-label" for="keep-order">Include content from the first crawled property that is not empty, based on the specified order</label>
+          </div>
+          <kendo-grid [data]="item.Mapping" (remove)="removeItem($event)">
+            <ng-template kendoGridToolbarTemplate>
+                <app-mapping-form (addMapping)="mappingAdded($event)"></app-mapping-form>
+            </ng-template>
+            <kendo-grid-command-column title="" width="55">
+            <ng-template kendoGridCellTemplate>
+                <button type="button" kendoGridRemoveCommand [icon]="'delete'"></button>
+            </ng-template>
+            </kendo-grid-command-column>
+            <kendo-grid-column field="Action" title="Action" width="80">
+                <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+                    <input [(ngModel)]="dataItem.Action" name="Action" type="textbox" class="k-textbox" readonly required/>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="Category" title="Category" width="120">
+                <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+                    <input [(ngModel)]="dataItem.Category" name="Category" class="k-textbox" type="textbox" readonly required/>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="CrawledProperties" title="Crawled Properties">
+                <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+                    <input [(ngModel)]="dataItem.CrawledProperties" name="CrawledProperties" type="textbox" class="k-textbox" required readonly/>
+                </ng-template>
+            </kendo-grid-column>
+          </kendo-grid>
+      </fieldset>
+      <div class="errorPlaceholder">
+          {{validationMessage}}
+      </div>
+      <div class="text-right">
+          <button type="submit" class="k-button k-primary">Submit</button>
+          <button type="button" class="k-button" (click)="cancel()">Cancel</button>
+          <button type="button" class="k-button" (click)="clear()">Clear</button>
+      </div>
+
+    
+  </form>
+</div>

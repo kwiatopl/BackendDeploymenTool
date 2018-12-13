@@ -1,0 +1,68 @@
+<div class='list'>
+    <form novalidate #myForm="ngForm" id="crawl-rule-list">
+      <kendo-grid [data]="items" (dataStateChange)="onStateChange()" (save)="saveHandler($event)" (cancel)="cancelHandler($event)" (remove)="removeItem($event)" (edit)="editHandler($event)">
+        <ng-template kendoGridToolbarTemplate>
+            <app-add-item [itemType]="itemType"></app-add-item>
+        </ng-template>
+        <kendo-grid-command-column title="" width="100" [style]="{'text-align': 'center'}">
+          <ng-template kendoGridCellTemplate>
+            <button kendoGridEditCommand [icon]="'edit'"></button>
+            <button kendoGridRemoveCommand [icon]="'delete'"></button>
+            <button kendoGridCancelCommand [icon]="'cancel'"></button>
+            <button kendoGridSaveCommand [icon]="'save'" [disabled]="myForm.invalid"></button>
+          </ng-template>
+        </kendo-grid-command-column>
+        <kendo-grid-column field="Name"  title="Path" width="250">
+          <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+            <input [(ngModel)]="dataItem.Name" editor="" name="Name" class="k-textbox" required/>
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="Ssa" title="Search Service Application" width="250">
+          <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+            <input [(ngModel)]="dataItem.Ssa" name="Ssa" class="k-textbox" required/>
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="Rule" title="Rule" width="200">
+          <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+            <input [(ngModel)]="dataItem.Rule" name="Rule" class="k-textbox" required readonly/>
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="Regex" title="Regex" width="200">
+          <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+            <input [(ngModel)]="dataItem.Regex" name="Regex" type="checkbox"/>
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="ExcludeComplexUrls" title="Exclude complex URLs" width="200">
+          <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+            <input [(ngModel)]="dataItem.ExcludeComplexUrls" name="ExcludeComplexUrls" type="checkbox" [disabled]="disableExclude"/>
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="CrawlComplexUrls" title="Crawl complex URLs" width="200">
+          <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+            <input [(ngModel)]="dataItem.CrawlComplexUrls" name="CrawlComplexUrls" type="checkbox" [disabled]="disableInclude"/>
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="FollowLinks" title="Follow links on the URL" width="200">
+          <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+            <input [(ngModel)]="dataItem.FollowLinks" name="FollowLinks" type="checkbox" [disabled]="disableInclude"/>
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="CrawlAsHttp" title="Crawl as HTTP pages" width="200">
+          <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+            <input [(ngModel)]="dataItem.CrawlAsHttp" name="CrawlAsHttp" type="checkbox" [disabled]="disableInclude"/>
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="AccessMethod" title="Access method" width="200">
+          <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+            <input [(ngModel)]="dataItem.AccessMethod" name="AccessMethod" class="k-textbox" readonly>
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="Priority" title="Priority" width="200">
+          <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+            <kendo-numerictextbox [min]=0 [max]=200 [(ngModel)]="dataItem.Priority" name="Priority"></kendo-numerictextbox>
+          </ng-template>
+        </kendo-grid-column>
+      </kendo-grid>
+    </form>
+  </div>
+  

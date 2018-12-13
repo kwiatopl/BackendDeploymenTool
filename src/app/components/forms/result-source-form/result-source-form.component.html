@@ -1,0 +1,51 @@
+<div>
+  <form #form="ngForm" class="k-form" (ngSubmit)="onSubmit(form)" novalidate>
+    <fieldset>
+      <legend>Result Source</legend>
+      <label class="k-form-field">
+        <span>
+            Name
+        </span>
+        <input type="text" class="k-textbox" placeholder="Name of the item" [(ngModel)]="item.Name" name="name" required>
+    </label>
+    <label class="k-form-field">
+      <span>
+          Search Service Application
+      </span>
+      <input type="text" class="k-textbox" placeholder="Name of the Search Service Application" [(ngModel)]="item.Ssa" name="ssa" required>
+    </label>
+    <div class="k-form-field">
+      <span>
+        Type
+      </span>
+      <kendo-dropdownlist (selectionChange)="onTypeChange($event)" name="type" [data]="types" [(ngModel)]=item.Type required style="width:24em"></kendo-dropdownlist>
+    </div>
+    <label class="k-form-field">
+      <span>
+          Remote Url
+      </span>
+      <input type="textbox" name="RemoteUrl" [(ngModel)]=item.RemoteUrl placeholder="Remote Url of the Result Source" class="k-textbox" required [disabled]="!remote">
+    </label>
+    <label class="k-form-field">
+      <span>
+          Description
+      </span>
+      <input class="k-textbox" type="textbox" [(ngModel)]=item.Description placeholder="Description of the item" name="Description">
+    </label>
+    <label class="k-form-field">
+      <span>
+          Query Transform
+      </span>
+      <textarea class="k-textarea" style="width:24em; height:4em" [(ngModel)]=item.QueryTransform placeholder="Query Transform of Result Source" name="QueryTransform" required></textarea>
+    </label>
+    </fieldset>
+    <div class="errorPlaceholder">
+        {{validationMessage}}
+    </div>
+    <div class="text-right">
+      <button type="submit" class="k-button k-primary">Submit</button>
+      <button type="button" class="k-button" (click)="cancel()">Cancel</button>
+      <button type="button" class="k-button" (click)="clear()">Clear</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,96 @@
+<div>
+  <form #form="ngForm" class="k-form" (ngSubmit)="onSubmit(form)" novalidate>
+      <fieldset>
+          <legend>Content Source</legend>
+          <label class="k-form-field">
+              <span>
+                  Name
+              </span>
+              <input type="text" class="k-textbox" placeholder="Name of the item" [(ngModel)]="item.Name" name="name" required>
+          </label>
+          <label class="k-form-field">
+              <span>
+                  Search Service Application
+              </span>
+              <input type="text" class="k-textbox" placeholder="Name of the Search Service Application" [(ngModel)]="item.Ssa" name="ssa" required>
+          </label>
+          <label class="k-form-field">
+              <span>
+                  Type
+              </span>
+              <kendo-dropdownlist name="type" [data]="types" [(ngModel)]="item.Type" (valueChange)="onTypeChange($event)" required></kendo-dropdownlist>
+          </label>
+          <label class="k-form-field">
+              <span>
+                  Start addresses
+              </span>
+              <textarea class="k-textarea" placeholder='Start addresses separated by comma (,)' [(ngModel)]="item.Address" name="address" required></textarea>
+          </label>
+          <div class="k-form-field">
+              <input type="checkbox" id="continuous" [(ngModel)]="item.Continuous" name="continuous" class="k-checkbox">
+              <label class="k-checkbox-label" for="continuous">Continuous crawl</label>
+          </div>
+          <label class="k-form-field">
+              <span>Crawl priority</span>
+              <kendo-dropdownlist name="priority" [data]="priorities" [(ngModel)]="item.Priority" required></kendo-dropdownlist>
+          </label>
+          <div *ngIf="type == 'Sharepoint'">
+            <label class="k-form-field">
+              <span>Sharepoint crawl behavior</span>
+              <kendo-dropdownlist name="behavior" [data]="behaviors" [(ngModel)]="item.Behavior" required></kendo-dropdownlist>
+            </label>
+          </div>
+          <div *ngIf="type == 'Web'">
+            <div class="k-form-field">
+              <input type="radio" name="depth" (change)="onDepthClick($event)" id="depth1" class="k-radio" value="Server" required>
+              <label class="k-radio-label" for="depth1">Only crawl within the server of each start address</label>
+              <input type="radio" name="depth" (change)="onDepthClick($event)" id="depth2" class="k-radio" value="Page" required>
+              <label class="k-radio-label" for="depth2">Only crawl the first page of each start address</label>
+              <input type="radio" name="depth" (change)="onDepthClick($event)" id="depth3" class="k-radio" value="Custom" required>
+              <label class="k-radio-label" for="depth3">Custom</label>
+            </div>
+            <label class="k-form-field">
+              <span>
+                  Max site enumeration depth
+              </span>
+              <kendo-numerictextbox [min]="0" [max]="100" [format]="'n0'" [disabled]="!customDepth" [(ngModel)]="item.SiteEnumeration" name="siteEnumeration"></kendo-numerictextbox>
+            </label>
+            <label class="k-form-field">
+                <span>
+                    Max page enumeration depth
+                </span>
+                <kendo-numerictextbox [min]="0" [max]="100" [format]="'n0'" [disabled]="!customDepth" [(ngModel)]="item.PageEnumeration" name="pageEnumeration"></kendo-numerictextbox>
+                <button kendoButton (click)="resetDepth($event)" [icon]="'close'" [look]="'bare'">Reset depth</button>
+            </label>
+            </div>
+          <div *ngIf="type == 'Business'">
+            <label class="k-form-field">
+                <span>
+                    BDC Application proxy group
+                </span>
+                <kendo-dropdownlist name="proxy" [data]="proxies" [(ngModel)]="item.ProxyGroup" name="proxyGroup"></kendo-dropdownlist>
+            </label>
+            <label class="k-form-field" *ngIf="item.ProxyGroup == 'Custom'">
+                <span>
+                    Custom proxy group
+                </span>
+                <input class="k-textbox" [(ngModel)]="item.Proxy" name="proxy" placeholder="Custom BDC Application proxy group" required>
+            </label>
+            <label>
+                <span>
+                     LOB System set<br/>
+                </span>
+                <textarea class="k-textarea" [(ngModel)]="item.LOBSystem" name="lobSystem" placeholder="LOB System set pairs separated by comma (,) and semicolon (;)"></textarea>
+            </label>
+          </div>
+      </fieldset>
+      <div class="errorPlaceholder">
+          {{validationMessage}}
+      </div>
+      <div class="text-right">
+          <button type="submit" class="k-button k-primary">Submit</button>
+          <button type="button" class="k-button" (click)="cancel()">Cancel</button>
+          <button type="button" class="k-button" (click)="clear()">Clear</button>
+      </div>
+  </form>
+</div>
