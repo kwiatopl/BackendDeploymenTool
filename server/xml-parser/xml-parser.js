@@ -59,8 +59,6 @@ XMLParser.prototype.ParseXML = function(data) {
                     .up();
             });
         }
-
-        var crawlRuleList = xml.node('CrawlRulesList');
         
         for (let i = 0; i < data[1].length; i++) {
             //Crawl Rules
@@ -84,8 +82,8 @@ XMLParser.prototype.ParseXML = function(data) {
                 rule = "InclusionRule";
             }
 
-            crawlRuleList.ele('CrawlRule')
-                .ele("Path", data[1][i].Name).up()
+            xml.node('CrawlRule')
+                .attribute({ Path: data[1][i].Name })
                 .ele("SearchApplication", data[1][i].Ssa).up()
                 .ele("Type", rule).up()
                 .ele("AccountName").up()
@@ -97,8 +95,6 @@ XMLParser.prototype.ParseXML = function(data) {
                 .ele("Priority", data[1][i].Priority).up()
                 .ele("SuppressIndexing", data[1][i].FollowLinks ? 1 : 0).up();
         }
-
-        var SearchSchemaList = xml.node('SearchSchema');
         
         for (let i = 0; i < data[2].length; i++) {
             //Search Schema
@@ -146,7 +142,7 @@ XMLParser.prototype.ParseXML = function(data) {
                 };
             }
 
-            var searchschema = SearchSchemaList.node('ManagedProperty')
+            var searchschema = xml.node('ManagedProperty')
                 .attribute({ Name: data[2][i].Name })
                 .ele('SearchApplication', data[2][i].Ssa).up()
                 .ele('OnlyCrawledProperties', data[2][i].OnlyMapping ? 1 : 0).up()
@@ -211,7 +207,7 @@ XMLParser.prototype.ParseXML = function(data) {
             }
             
             xml.node("ResultSource")
-            .ele("Name", data[3][i].Name).up()
+            .attribute({ Name: data[3][i].Name })
             .ele("SearchApplication", data[3][i].Ssa).up()
             .ele("Type", rsType).up()
             .ele("Description", data[3][i].Description).up()

@@ -5,6 +5,7 @@ import { CrawlRuleListService } from '../../services/crawl-rule-list.service';
 import { SearchSchemaListService } from '../../services/search-schema-list.service';
 import { ResultSourceListService } from '../../services/result-source-list.service';
 import { saveAs } from 'file-saver/FileSaver';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-generate-xml',
@@ -44,7 +45,8 @@ export class GenerateXmlComponent implements OnInit {
     .subscribe(
       data => { 
         console.log("Post request succesful", data);
-        let filename = "DeployScript.zip";
+        let date = moment().format("YYYY-MM-DD_HH-mm-ss-SSS");
+        let filename = "DeployScript_ " + date + ".xml";
         saveAs(data, filename);
       }, 
       error => { 
