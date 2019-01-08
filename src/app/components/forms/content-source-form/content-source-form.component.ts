@@ -1,6 +1,14 @@
+<<<<<<< HEAD
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { ContentSourceListService } from '../../../services/content-source-list.service';
 import { ContentSource } from '../../../models/contentSource';
+=======
+import { Component, OnInit, Output, Input, EventEmitter} from '@angular/core';
+import { ContentSourceListService } from '../../../services/content-source-list.service';
+import { ContentSource } from '../../../models/contentSource';
+import { NgForm, NgModel } from '@angular/forms';
+import { AddItemComponent } from '../../add-item/add-item.component';
+>>>>>>> 0c2a2adb8bd934ddd6bac1e78c93cb3e55c7eda6
 import { ContentSourceType } from '../../../models/enums/csTypeEnum';
 import { Behavior } from '../../../models/enums/behaviorEnum';
 import { Proxy } from '../../../models/enums/proxyEnum';

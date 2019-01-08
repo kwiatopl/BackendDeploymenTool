@@ -49,7 +49,11 @@ const appRoutes: Routes = [
     SearchSchemaListComponent,
     MappingFormComponent,
     ResultSourceListComponent,
+<<<<<<< HEAD
     ResultSourceFormComponent,
+=======
+    ResultSourceFormComponent
+>>>>>>> 0c2a2adb8bd934ddd6bac1e78c93cb3e55c7eda6
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

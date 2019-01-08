@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { HttpHeaders, HttpClient} from '@angular/common/http';
 import { ContentSourceListService } from '../../services/content-source-list.service';
 import { CrawlRuleListService } from '../../services/crawl-rule-list.service';
@@ -6,6 +7,24 @@ import { SearchSchemaListService } from '../../services/search-schema-list.servi
 import { ResultSourceListService } from '../../services/result-source-list.service';
 import { saveAs } from 'file-saver/FileSaver';
 import * as moment from 'moment';
+=======
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+import { catchError, retry } from 'rxjs/operators';
+import { HttpHeaders, HttpClient, HttpErrorResponse, HttpRequest } from '@angular/common/http';
+import { ContentSourceListService } from '../../services/content-source-list.service';
+import { CrawlRuleListService } from '../../services/crawl-rule-list.service';
+import { ContentSource } from '../../models/contentSource';
+import { CrawlRule } from '../../models/crawlRule';
+import { SearchSchemaListService } from '../../services/search-schema-list.service';
+import { ResultSourceListService } from '../../services/result-source-list.service';
+import { saveAs } from 'file-saver/FileSaver';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+  })
+};
+>>>>>>> 0c2a2adb8bd934ddd6bac1e78c93cb3e55c7eda6
 
 @Component({
   selector: 'app-generate-xml',
@@ -17,6 +36,10 @@ export class GenerateXmlComponent implements OnInit {
 
   verifyData() {
     var regex = /<[a-zA-Z\/][^>]*>/ig;
+<<<<<<< HEAD
+=======
+    //var regex = /(<([^>]+)>)|([<>!])/ig;
+>>>>>>> 0c2a2adb8bd934ddd6bac1e78c93cb3e55c7eda6
     this.ItemsList.forEach( el => {
       el.forEach( innerEl => {
         Object.keys(innerEl).forEach( key => {
@@ -45,8 +68,12 @@ export class GenerateXmlComponent implements OnInit {
     .subscribe(
       data => { 
         console.log("Post request succesful", data);
+<<<<<<< HEAD
         let date = moment().format("YYYY-MM-DD_HH-mm-ss-SSS");
         let filename = "DeployScript_ " + date + ".xml";
+=======
+        let filename = "DeployScript.zip";
+>>>>>>> 0c2a2adb8bd934ddd6bac1e78c93cb3e55c7eda6
         saveAs(data, filename);
       }, 
       error => { 

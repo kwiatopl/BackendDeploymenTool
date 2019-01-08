@@ -3,16 +3,27 @@ function XMLParser(){};
 XMLParser.prototype.ParseXML = function(data) {
         var builder = require('xmlbuilder');
         var xml = builder.create('BackendDeployScript', { encoding: 'utf-8' }).attribute({ Name: 'BackEndDeployScript' });
+<<<<<<< HEAD
+=======
+        var runCrawl = 0;
+>>>>>>> 0c2a2adb8bd934ddd6bac1e78c93cb3e55c7eda6
 
         for (let i = 0; i < data[0].length; i++) {
             //Content Sources
             let priority;
             let lobSystemDict = [];
+<<<<<<< HEAD
             
             if (data[0][i].Priority == "Normal") {
                 priority = 1;
             }
             else if (data[0][i].Priority == "High") {
+=======
+            runCrawl = 1;
+            
+            if (data[0][i].Priority == "Normal") {
+                priority = 1;
+>>>>>>> 0c2a2adb8bd934ddd6bac1e78c93cb3e55c7eda6
                 priority = 2;
             }
             else {
@@ -59,12 +70,21 @@ XMLParser.prototype.ParseXML = function(data) {
                     .up();
             });
         }
+<<<<<<< HEAD
+=======
+
+        var crawlRuleList = xml.node('CrawlRulesList');
+>>>>>>> 0c2a2adb8bd934ddd6bac1e78c93cb3e55c7eda6
         
         for (let i = 0; i < data[1].length; i++) {
             //Crawl Rules
             let accessMethod;
             let rule;
             let complexUrls;
+<<<<<<< HEAD
+=======
+            runCrawl = 1;
+>>>>>>> 0c2a2adb8bd934ddd6bac1e78c93cb3e55c7eda6
 
             if (data[1][i].AccessMethod) {
                 accessMethod = "DefaultRuleAccess";
@@ -82,8 +102,13 @@ XMLParser.prototype.ParseXML = function(data) {
                 rule = "InclusionRule";
             }
 
+<<<<<<< HEAD
             xml.node('CrawlRule')
                 .attribute({ Path: data[1][i].Name })
+=======
+            crawlRuleList.ele('CrawlRule')
+                .ele("Path", data[1][i].Name).up()
+>>>>>>> 0c2a2adb8bd934ddd6bac1e78c93cb3e55c7eda6
                 .ele("SearchApplication", data[1][i].Ssa).up()
                 .ele("Type", rule).up()
                 .ele("AccountName").up()
@@ -95,6 +120,11 @@ XMLParser.prototype.ParseXML = function(data) {
                 .ele("Priority", data[1][i].Priority).up()
                 .ele("SuppressIndexing", data[1][i].FollowLinks ? 1 : 0).up();
         }
+<<<<<<< HEAD
+=======
+
+        var SearchSchemaList = xml.node('SearchSchema');
+>>>>>>> 0c2a2adb8bd934ddd6bac1e78c93cb3e55c7eda6
         
         for (let i = 0; i < data[2].length; i++) {
             //Search Schema
@@ -103,6 +133,10 @@ XMLParser.prototype.ParseXML = function(data) {
             let refinableType;
             let sortableType;
             let type;
+<<<<<<< HEAD
+=======
+            runCrawl = 1;
+>>>>>>> 0c2a2adb8bd934ddd6bac1e78c93cb3e55c7eda6
 
             switch(data[2][i].Type) {
                 case 'Text': 
@@ -136,6 +170,7 @@ XMLParser.prototype.ParseXML = function(data) {
                 };
 
                 if (data[2][i].Sortable.toString()) {
+<<<<<<< HEAD
                     if(data[2][i].Sortable.toString() === "No") { sortable = 0; sortableType = "" }
                     else if(data[2][i].Sortable.toString() === "Latent") { sortable = 1; sortableType = "Latent" }
                     else if(data[2][i].Sortable.toString() === "Active") { sortable = 1; sortableType = "Enabled" }
@@ -143,6 +178,15 @@ XMLParser.prototype.ParseXML = function(data) {
             }
 
             var searchschema = xml.node('ManagedProperty')
+=======
+                    if(data[2][i].Sortable.toString() === "No") { sortable = 0; sortableType = "Shallow" }
+                    else if(data[2][i].Sortable.toString() === "Latent") { sortable = 1; sortableType = "Latent" }
+                    else if(data[2][i].Sortable.toString() === "Active") { sortable = 1; sortableType = "Deep" }
+                };
+            }
+
+            var searchschema = SearchSchemaList.node('ManagedProperty')
+>>>>>>> 0c2a2adb8bd934ddd6bac1e78c93cb3e55c7eda6
                 .attribute({ Name: data[2][i].Name })
                 .ele('SearchApplication', data[2][i].Ssa).up()
                 .ele('OnlyCrawledProperties', data[2][i].OnlyMapping ? 1 : 0).up()
@@ -167,6 +211,10 @@ XMLParser.prototype.ParseXML = function(data) {
                 .ele('AdvancedSearchableSettings').up()
                 .ele('SafeForAnonymous', data[2][i].Safe ? 1 : 0).up()
                 .ele('Tenant').up()
+<<<<<<< HEAD
+=======
+                .ele('OnlyCrawledProperties').up();
+>>>>>>> 0c2a2adb8bd934ddd6bac1e78c93cb3e55c7eda6
 
             var crawledPropertiesList = searchschema.ele('CrawledPropertiesList');
 
@@ -193,6 +241,11 @@ XMLParser.prototype.ParseXML = function(data) {
             };
         };
 
+<<<<<<< HEAD
+=======
+        var resultSource = xml.node("ResultSource");
+
+>>>>>>> 0c2a2adb8bd934ddd6bac1e78c93cb3e55c7eda6
         for( let i = 0; i < data[3].length; i++ ) {
             //Result Source
             let rsType;
@@ -205,15 +258,26 @@ XMLParser.prototype.ParseXML = function(data) {
                 else if(data[3][i].Type === "OpenSearch") { rsType = "Open" }
                 else if(data[3][i].Type === "Exchange") { rsType = "Exchange" }
             }
+<<<<<<< HEAD
             
             xml.node("ResultSource")
             .attribute({ Name: data[3][i].Name })
+=======
+
+            resultSource
+            .ele("Name", data[3][i].Name).up()
+>>>>>>> 0c2a2adb8bd934ddd6bac1e78c93cb3e55c7eda6
             .ele("SearchApplication", data[3][i].Ssa).up()
             .ele("Type", rsType).up()
             .ele("Description", data[3][i].Description).up()
             .ele("RemoteUrl", data[3][i].RemoteUrl).up()
             .ele("QueryTransform", data[3][i].QueryTransform).up()
         }
+<<<<<<< HEAD
+=======
+        
+       xml.node("RunCrawl", runCrawl);
+>>>>>>> 0c2a2adb8bd934ddd6bac1e78c93cb3e55c7eda6
 
     return xml.end({ pretty: true });
 };

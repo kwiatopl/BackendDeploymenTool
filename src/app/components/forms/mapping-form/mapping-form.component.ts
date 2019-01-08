@@ -12,7 +12,11 @@ import { Mapping } from '../../../models/mapping';
 })
 export class MappingFormComponent implements OnInit {
   opened: boolean = false;
+<<<<<<< HEAD
   isDraggable: boolean = true;
+=======
+  isDraggable: boolean = false;
+>>>>>>> 0c2a2adb8bd934ddd6bac1e78c93cb3e55c7eda6
   isResizable: boolean = false;
   properties: Array<string>;
   crawledProperties: string;
@@ -30,6 +34,10 @@ export class MappingFormComponent implements OnInit {
     Category[9],
     Category[10],
     Category[11],
+<<<<<<< HEAD
+=======
+    Category[12],
+>>>>>>> 0c2a2adb8bd934ddd6bac1e78c93cb3e55c7eda6
   ]; 
 
   validationMessage: string;
